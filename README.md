@@ -4,7 +4,6 @@
 1. [ Introdution. ](#intro)
 2. [ Goal ](#goal)
 3. [ Authors ](#auth)
-4. [ For Developers ](#dev)
 
 <a name="intro"></a>
 ## 1. Introdution
