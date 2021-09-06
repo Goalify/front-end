@@ -1,5 +1,4 @@
-# Goalify
-
+# Goalify  <img  align="right" src="https://github.com/Goalify/front-end/blob/main/Goalify-logos.jpeg" width="250" height="250" />
 ## Table of Contents
 1. [ Introdution. ](#intro)
 2. [ Goal ](#goal)
