@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Dashboard from './components/dashboard/Dashboard';
 import reportWebVitals from './reportWebVitals';
+import logo from "./Goalify-logos.jpeg"
 
 ReactDOM.render(
   <React.StrictMode>
-    <Dashboard />
+    <img src={logo} width="500" height="500" className="logo"/>
   </React.StrictMode>,
   document.getElementById('root')
 );

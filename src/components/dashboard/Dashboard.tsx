@@ -1,7 +1,10 @@
 import * as React from "react";
-
 const Dashboard = () => {
-    return <div>Dashboard</div>
+    
+    return <div>
+        Goalify
+        <img src="https://ibb.co/dgZFRfh"/>
+    </div>
 }
 
 export default Dashboard;
