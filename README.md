@@ -1,3 +1,38 @@
+# Date Factorial 
+
+## Table of Contents
+1. [ Introdution. ](#intro)
+2. [ Requirements ](#req)
+3. [ Installation ](#inst)
+4. [ Usage ](#use)
+5. [ Credits ](#cred)
+
+<a name="intro"></a>
+## 1. Introdution
+This is an implementation of calculating the factorial of the digits' sum in a given date. This project can be used to associate dates with numbers to help construct a hash function. 
+
+<a name="req"></a>
+## 2. Requirements
+- Python 3.7 or higher.
+- *Datetime* v4.3 or higher.
+
+<a name="inst"></a>
+## 3. Installation
+- Download the desired python version from [here](https://www.python.org/downloads/).
+- Clone this repository. 
+- Install the *Datetime* library using the command `pip install datetime`.
+
+<a name="use"></a>
+## 4. Usage 
+To run the project, use the following command `python3 /path_to_file/main.py` in the cmd. 
+You will be prompted to enter a date of the format `DD/MM/YYYY` in the console. After entering the date, the script will calculate the result as explained in the introduction. The script will handle any errors that result from using incorrect formats. 
+
+<a name="cred"></a>
+## 5. Credits
+This project was created by: Hasan Khadra, Mahmood Darwish, Mohammad Shahin on 18/8/2021.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
