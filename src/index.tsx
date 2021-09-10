@@ -1,13 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Dashboard from './components/dashboard/Dashboard';
 import reportWebVitals from './reportWebVitals';
-import logo from "./Goalify-logos.jpeg"
+import App from "./App"
+import Test from "./components/dashboard/test"
+import {Goal, Goals} from "./tsInterfaces/Goals"
+
+let goal1: Goal = {
+  state: "Done",
+  name: "Goal 1",
+  dateCreated: "8/Sep",
+}
+
+let goal2: Goal = {
+  state: "In progress",
+  name: "Goal 2",
+  dateCreated: "10/Sep",
+}
+let goals: Goals = {list: [goal1, goal2]};
 
 ReactDOM.render(
   <React.StrictMode>
-    <img src={logo} width="500" height="500" className="logo"/>
+    <App list={goals.list} />
   </React.StrictMode>,
   document.getElementById('root')
 );
