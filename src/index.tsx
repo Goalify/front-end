@@ -5,6 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import App from "./App"
 import {Goal, Goals} from "./tsInterfaces/Goals"
 
+import {BrowserRouter as Router} from 'react-router-dom'
+
 let goal1: Goal = {
   state: "Done",
   name: "Goal 1",
@@ -20,7 +22,9 @@ let goals: Goals = {list: [goal1, goal2]};
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -7,36 +7,43 @@ import GoalsList from "./components/dashboard/GoalsList"
 import {Goals} from "./tsInterfaces/Goals"
 import AboutUs from './components/AboutUs';
 import Profile from './components/Profile';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import Login from './components/account_setup/Login';
-
+import {useState} from 'react'
 
 import Register from './components/account_setup/Register';
+import { couldStartTrivia } from 'typescript';
 
 function App(){
+
+    const [token, setToken] = useState<boolean>(false);
+    const history = useHistory();
+    console.log(history)
     
-    const [isLoggedIn, setIsLoggedIn] = React.useState<boolean>(false);
+    if (!token){
+        history.push('/register');
+    }
 
     return <div>
-            <Router>
-                <Route path="/login">
-                    <Login />
-                </Route>
+            
+                <Switch>
 
+
+                <Route path="/aboutus">
+                    <AboutUs />
+                </Route>
+                
+                <Route exact path="/">
+                    {token ? <Dashboard /> : <Register />}
+                </Route>
                 <Route path="/register">
                     <Register />
-                </Route>
-
-                <Route exact path="/">
-                    {isLoggedIn ? <Dashboard /> : <Register />}
                 </Route>
 
                 <Route path="/dashboard">
                     <Dashboard />
                 </Route>
-                <Route path="/aboutus">
-                    <AboutUs />
-                </Route>
+               
             
                 <Route path="/profile">
                     <Profile />
@@ -45,8 +52,7 @@ function App(){
                 <Route path="/discover">
                     Discover component to be implemented
                 </Route>
-
-            </Router>
+               </Switch>
         </div>
 
 }

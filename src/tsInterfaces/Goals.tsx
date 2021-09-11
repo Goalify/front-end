@@ -10,3 +10,7 @@ export interface Goals {
     list: Goal[];
 };
 
+export interface LoginProps{
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
