@@ -26,14 +26,14 @@ const HeaderNavBar = (props: Goals) => {
                <AboutUs />
             </Route>
             <Route path="/dashboard">
-               <Dashboard list={props.list}/>
+               <Dashboard />
             </Route>
             
             <Route path="/profile">
                <Profile />
             </Route>
             <Route path="/">
-               <Dashboard list={props.list}/>
+               <Dashboard />
             </Route>
          </Switch>
       </Router>

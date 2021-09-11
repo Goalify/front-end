@@ -20,7 +20,7 @@ let goals: Goals = {list: [goal1, goal2]};
 
 ReactDOM.render(
   <React.StrictMode>
-    <App list={goals.list} />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

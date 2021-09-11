@@ -43,14 +43,8 @@ const Register = () => {
         );
     }
     else{
-        return (
-            <Router>
-                <Route>
-                    <Redirect to="/dashboard">
-                        {Dashboard}
-                    </Redirect>
-                </Route>
-            </Router>
+        return ( 
+            <Redirect to="/dashboard" />
         );
     }
 }

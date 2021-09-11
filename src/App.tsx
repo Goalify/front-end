@@ -5,24 +5,48 @@ import HeaderNavBar from './components/HeaderNavBar';
 import Footer from './components/common/Footer';
 import GoalsList from "./components/dashboard/GoalsList"
 import {Goals} from "./tsInterfaces/Goals"
-<<<<<<< HEAD
+import AboutUs from './components/AboutUs';
+import Profile from './components/Profile';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import Login from './components/account_setup/Login';
-=======
-import Register from './components/account_setup/register';
->>>>>>> 6e317b02efc351edb59eb40646beba91d68ae147
 
-function App(props: Goals){
+
+import Register from './components/account_setup/Register';
+
+function App(){
+    
+    const [isLoggedIn, setIsLoggedIn] = React.useState<boolean>(false);
 
     return <div>
-<<<<<<< HEAD
-            {/* <HeaderNavBar list={props.list}/>
-            <Footer /> */}
-            <Login />
-=======
-            <Register></Register>
-            {/* <HeaderNavBar list={props.list}/>
-            <Footer /> */}
->>>>>>> 6e317b02efc351edb59eb40646beba91d68ae147
+            <Router>
+                <Route path="/login">
+                    <Login />
+                </Route>
+
+                <Route path="/register">
+                    <Register />
+                </Route>
+
+                <Route exact path="/">
+                    {isLoggedIn ? <Dashboard /> : <Register />}
+                </Route>
+
+                <Route path="/dashboard">
+                    <Dashboard />
+                </Route>
+                <Route path="/aboutus">
+                    <AboutUs />
+                </Route>
+            
+                <Route path="/profile">
+                    <Profile />
+                </Route>
+
+                <Route path="/discover">
+                    Discover component to be implemented
+                </Route>
+
+            </Router>
         </div>
 
 }
