@@ -14,7 +14,6 @@ const Login = () => {
     const usernameRef = useRef<HTMLInputElement>(null);
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    let history = useHistory();
 
     useEffect(() => {
         if (usernameRef && usernameRef.current)
@@ -23,8 +22,6 @@ const Login = () => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault(); 
-
-        history.push("/dashboard");
 
         // TODO: request from backend and reply to user accordingly.
         if (true){
