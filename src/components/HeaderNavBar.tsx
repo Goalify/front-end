@@ -1,6 +1,6 @@
 import * as React from "react";
-import {Goals} from '../../tsInterfaces/Goals'
-import Profile from "../Profile";
+import {Goals} from '../tsInterfaces/Goals'
+import Profile from "./Profile";
 import {
    BrowserRouter as Router,
    Switch,
@@ -8,8 +8,8 @@ import {
    Link
  } from "react-router-dom";
 
-import AboutUs from "../AboutUs";
-import Dashboard from "./Dashboard";
+import AboutUs from "./AboutUs";
+import Dashboard from "./dashboard/Dashboard";
 
 const HeaderNavBar = (props: Goals) => {
         
@@ -21,7 +21,6 @@ const HeaderNavBar = (props: Goals) => {
             <li> <a><Link to="/profile">Profile</Link></a></li>
          </ul>
          <Switch>
-            
             <Route path="/aboutus">
                <AboutUs />
             </Route>

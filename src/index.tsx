@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from "./App"
-import Test from "./components/dashboard/test"
 import {Goal, Goals} from "./tsInterfaces/Goals"
 
 let goal1: Goal = {
