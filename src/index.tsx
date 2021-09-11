@@ -14,7 +14,7 @@ let goal1: Goal = {
 
 let goal2: Goal = {
   state: "In progress",
-  name: "Goal 22",
+  name: "Goal 2",
   dateCreated: "10/Sep",
 }
 let goals: Goals = {list: [goal1, goal2]};
