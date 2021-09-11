@@ -22,7 +22,6 @@ const HeaderNavBar = (props: Goals) => {
             <li> <a><Link to="/profile">Profile</Link></a></li>
          </ul>
          <Switch>
-            
             <Route path="/aboutus">
                <AboutUs />
             </Route>
