@@ -42,7 +42,7 @@ const Register = () => {
                 </form>
                 <div>
                     Already have an account? 
-                    <Link to="login">
+                    <Link to="/login">
                         Log in.
                     </Link>
                 </div>
