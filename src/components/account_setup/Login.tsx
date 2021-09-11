@@ -25,7 +25,6 @@ const Login = (props: LoginProps) => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault(); 
 
-
         // TODO: request from backend and reply to user accordingly.
 
         setIsLoginSuccessful(true);

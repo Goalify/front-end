@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import Dashboard from "../dashboard/Dashboard";
 
 const Register = () => {
@@ -20,6 +20,7 @@ const Register = () => {
             alert("Password is weak make sure to have at least 5 charchers!!!");
             return;
         }
+        // TODO: Send information to the back-end.
         setFlag(true);
     }
 
@@ -39,12 +40,18 @@ const Register = () => {
                         </label>
                     <input type="submit" value="Submit" />
                 </form>
+                <div>
+                    Already have an account? 
+                    <Link to="login">
+                        Log in.
+                    </Link>
+                </div>
             </div>
         );
     }
     else{
         return ( 
-            <Redirect to="/dashboard" />
+            <Redirect to="/login" />
         );
     }
 }
