@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from "./App"
-import {Goal, Goals} from "./tsInterfaces/Goals"
+import {Goal, Goals} from "./tsInterfaces/interfaces"
 
 import {BrowserRouter as Router} from 'react-router-dom'
 
