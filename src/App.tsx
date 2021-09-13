@@ -4,18 +4,20 @@ import AboutUs from './components/AboutUs';
 import Profile from './components/Profile';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import Login from './components/account_setup/Login';
-import {useState} from 'react'
-
+import {useState, useContext, createContext} from 'react'
+import { User } from './tsInterfaces/interfaces';
 import Register from './components/account_setup/Register';
+import {userToken} from './index'
 
 function App(){
-
-    const [token, setToken] = useState<boolean>(false);
-    const history = useHistory();
-    console.log(history)
     
-    if (!token){
-        history.push('/register');
+    const history = useHistory();
+    
+    const currToken = useContext(userToken);
+    console.log(currToken.token);
+
+    if (!currToken.token){
+        history.push('/login')
     }
 
     return <div>
@@ -30,7 +32,7 @@ function App(){
                 </Route>
                 
                 <Route exact path="/">
-                    {token ? <Dashboard /> : <Register />}
+                    {currToken.token ? <Dashboard /> : <Register />}
                 </Route>
                 <Route path="/register">
                     <Register />

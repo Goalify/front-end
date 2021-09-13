@@ -1,30 +1,36 @@
-import React from 'react';
+import React, {useState, createContext} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from "./App"
-import {Goal, Goals} from "./tsInterfaces/interfaces"
+import {Goal, Goals, User} from "./tsInterfaces/interfaces"
 
-import {BrowserRouter as Router} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import { Test1 } from './components/account_setup/test';
 
-let goal1: Goal = {
-  state: "Done",
-  name: "Goal 1",
-  dateCreated: "8/Sep",
+
+export const userToken = createContext({token: false, setToken: (token: boolean) => {}});
+
+export function Index(){
+
+  const [token, setToken] = useState<boolean>(false);
+
+  return(
+    <userToken.Provider value={{token: token, setToken: setToken}}>
+      <Router>
+        <App />
+      </Router>
+    </userToken.Provider>
+
+  )
 }
-
-let goal2: Goal = {
-  state: "In progress",
-  name: "Goal 2",
-  dateCreated: "10/Sep",
-}
-let goals: Goals = {list: [goal1, goal2]};
 
 ReactDOM.render(
+
+
+
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <Index />
   </React.StrictMode>,
   document.getElementById('root')
 );

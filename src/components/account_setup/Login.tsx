@@ -1,33 +1,44 @@
-import {useState, useEffect, useRef, FormEvent} from "react";
+import axios from "axios";
+import {useState, useEffect, useRef, FormEvent, useContext} from "react";
 import { useHistory } from "react-router-dom";
 import {http} from "../../api/calls"
-
+import { HttpResponse } from "../../tsInterfaces/interfaces";
+import { userToken } from "../../index";
 const Login = () => {
     
     const usernameRef = useRef<HTMLInputElement>(null);
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [isLoginSuccessful, setIsLoginSuccessful] = useState<boolean>(false);
+    const curToken = useContext(userToken);
+
     const history = useHistory();
 
     useEffect(() => {
         if (usernameRef && usernameRef.current)
             usernameRef.current.focus()
     }, []);
-    interface Todo {
-        userId: number;
-        id: number;
-        title: string;
-        completed: boolean;
-      }
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault(); 
 
-        // TODO: request from backend and reply to user accordingly.
-        const respone = await http<Todo[]>("https://jsonplaceholder.typicode.com/todos"
-        );
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();        
+
+        const response = await axios.post(
+            'http://localhost:4001/login',
+            {                
+                "username": "test-username",
+                "password": "test-password"
+            },
+            {
+                headers: 
+                { 
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            }
+          )
+        console.log(await response.data)
         
-        setIsLoginSuccessful(true);
+        curToken.setToken(true);
+
         history.push('/dashboard');
         // TODO useContext
     }
