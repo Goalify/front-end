@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Goals} from '../tsInterfaces/Goals'
+import {Goals} from '../tsInterfaces/interfaces'
 import Profile from "./Profile";
 import {
    BrowserRouter as Router,

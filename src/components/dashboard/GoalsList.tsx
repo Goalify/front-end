@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {Goals, Goal} from '../../tsInterfaces/Goals'
+import {Goals, Goal} from '../../tsInterfaces/interfaces'
 
 let goal1: Goal = {
     state: "Done",
