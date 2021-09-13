@@ -1,7 +1,6 @@
 import axios from "axios";
 import {useState, useEffect, useRef, FormEvent, useContext} from "react";
-import { useHistory } from "react-router-dom";
-import {http} from "../../api/calls"
+import { Link, useHistory } from "react-router-dom";
 import { HttpResponse } from "../../tsInterfaces/interfaces";
 import { userToken } from "../../index";
 const Login = () => {
@@ -24,8 +23,8 @@ const Login = () => {
         const response = await axios.post(
             'http://localhost:4001/login',
             {                
-                "username": "test-username",
-                "password": "test-password"
+                "username": username,
+                "password": password
             },
             {
                 headers: 
@@ -43,21 +42,32 @@ const Login = () => {
         // TODO useContext
     }
     
-    return <form onSubmit={(event) => {handleSubmit(event)}}>
-                <label>
-                Username:
-                <input ref={usernameRef} type="text" name="name" 
-                onChange={(event) => {setUsername(event.target.value);}}
-                />
-                </label>
+    return (<div>
+            <form onSubmit={(event) => {handleSubmit(event)}}>
+                <div className="container">  
+                    <label className="uname">
+                    Username:
+                    <input required ref={usernameRef} type="text" name="name" placeholder="Enter Username"
+                    onChange={(event) => {setUsername(event.target.value);}}
+                    />
+                    </label>
 
-                <label>
-                Password:
-                <input  type="password" name="password" onChange={(event) => {setPassword(event.target.value);}}/>
-                </label>
-
+                    <label className="psw">
+                    Password:
+                    <input required type="password" name="password" placeholder="Enter Password" 
+                    onChange={(event) => {setPassword(event.target.value);}}/>
+                    </label>
+                </div>
+                
+                <div className="container" style={{backgroundColor: "#f1f1f1"}}>
                 <input type="submit" value="submit" />
+                </div>
             </form>
+                Don't have an account?
+                <Link to="/register">
+                    Register.
+                </Link>
+            </div>)
 }
 
 export default Login;
