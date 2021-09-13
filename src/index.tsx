@@ -6,8 +6,6 @@ import App from "./App"
 import {Goal, Goals, User} from "./tsInterfaces/interfaces"
 
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import { Test1 } from './components/account_setup/test';
-
 
 export const userToken = createContext({token: false, setToken: (token: boolean) => {}});
 
