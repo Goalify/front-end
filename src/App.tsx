@@ -34,6 +34,7 @@ function App(){
                 </Route>
                 
                 <Route exact path="/">
+                    
                     {currToken.token != "" ? <div><HeaderNavBar /><Dashboard /><Footer /></div> : <Register />}
                 </Route>
                 <Route path="/register">
