@@ -43,14 +43,14 @@ function GoalsList(){
         
     }
 
-    // let goalslist = <ul>
-    //     {goals.list.map((goal, ind) => 
-    //        <Goal goal={goal} setGoal={setGoal} deleteGoal={deleteGoal} />)}
-    //     </ul>;
+    let goalslist = <ul>
+        {goals.list.map((goal, ind) => 
+           <GoalItem goal={goal} setGoal={setGoal} deleteGoal={deleteGoal} />)}
+        </ul>;
 
     return <div>
         <button onClick={addGoal}>+</button>
-        {/* {goalslist} */}
+        {goalslist}
         </div>
 }
 
