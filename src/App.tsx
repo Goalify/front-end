@@ -8,6 +8,7 @@ import {useState, useContext, createContext} from 'react'
 import { User } from './tsInterfaces/interfaces';
 import Register from './components/account_setup/Register';
 import {userToken} from './index'
+import HeaderNavBar from './components/HeaderNavBar';
 
 function App(){
     
@@ -27,24 +28,27 @@ function App(){
                 </Route>
 
                 <Route path="/aboutus">
+                    <HeaderNavBar />
                     <AboutUs />
                     <Footer />
                 </Route>
                 
                 <Route exact path="/">
-                    {currToken.token ? <Dashboard /> : <Register />}
+                    {currToken.token != "" ? <div><HeaderNavBar /><Dashboard /><Footer /></div> : <Register />}
                 </Route>
                 <Route path="/register">
                     <Register />
                 </Route>
 
                 <Route path="/dashboard">
+                    <HeaderNavBar />
                     <Dashboard />
                     <Footer />
                 </Route>
                
             
                 <Route path="/profile">
+                    <HeaderNavBar />
                     <Profile />
                     <Footer />
                 </Route>
@@ -52,7 +56,13 @@ function App(){
                 <Route path="/discover">
                     Discover component to be implemented
                 </Route>
+                <Route path="/">
+                    <HeaderNavBar />
+                    <Dashboard />
+                    <Footer />
+                </Route>
             </Switch>
+
         </div>
 
 }
