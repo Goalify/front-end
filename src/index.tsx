@@ -14,7 +14,7 @@ export const userToken = createContext({
 
 export function Index(){
 
-  const [token, setToken] = useState<string>("");
+  const [token, setToken] = useState<string>("tr");
   const [id, setId] = useState<string>("");
 
   return(

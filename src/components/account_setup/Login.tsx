@@ -36,7 +36,7 @@ const Login = () => {
         //   )
         // console.log(await response.data)
         
-        curToken.setToken("test");
+        curToken.setToken("darwish");
 
         history.push('/dashboard');
     }
