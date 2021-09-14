@@ -1,6 +1,9 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, Link, useHistory } from "react-router-dom";
 import Dashboard from "../dashboard/Dashboard";
+import { userToken } from "../../index";
+import { NodeBuilderFlags } from "typescript";
+
 
 const Register = () => {
     const [name, setName] = React.useState<string>("");
@@ -8,6 +11,7 @@ const Register = () => {
     const [password, setPassword] = React.useState<string>("");
     const [repeatPassword, setRepeatPassword] = React.useState<string>("");
     const [flag, setFlag] = React.useState<boolean>(false);
+    const history = useHistory();
 
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
@@ -42,6 +46,7 @@ const Register = () => {
                 </form>
                 <div>
                     Already have an account? 
+                    <br/>
                     <Link to="/login">
                         Log in.
                     </Link>
@@ -50,9 +55,8 @@ const Register = () => {
         );
     }
     else{
-        return ( 
-            <Redirect to="/login" />
-        );
+        history.push("/login");
+        return <div>Thank you for joining</div>;
     }
 }
 
