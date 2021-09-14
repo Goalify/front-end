@@ -1,8 +1,20 @@
 import * as React from 'react';
 import { useContext } from 'react';
+
+export interface milestones{
+    id: string,
+    setMilestone: any,
+    state: boolean,
+    name: string,
+    description: string;
+}
+
 export interface Goal {
+    id: string,
     state: string,
     name: string,
+    description: string,
+    milestones: milestones[],
     dateCreated: string;
 };
 

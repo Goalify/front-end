@@ -1,43 +1,57 @@
 import * as React from 'react'
 import {Goals, Goal} from '../../tsInterfaces/interfaces'
+import {goal1, goal2, goal3} from "../../testcases/samples"
 
-let goal1: Goal = {
-    state: "Done",
-    name: "Goal 1",
-    dateCreated: "8/Sep",
-}
-  
-let goal2: Goal = {
-    state: "In progress",
-    name: "Goal 2",
-    dateCreated: "10/Sep",
-}
-function GoalsList(props: Goals){
 
-    const [goals, setGoals] = React.useState<Goals>({list: props.list});
+function GoalsList(){
+
+    let response: Goals = {list: [goal1, goal2, goal3]};
     
-    
+    const [goals, setGoals] = React.useState<Goals>({list: response.list});
 
-    let gg = <ul>
-        {goals.list.map((goal, ind) => {
+    const setGoal = (goal: Goal) => {
+        const new_goals = goals.list.slice();
 
-            const handleClick = (ind: number) => {
-                
-                let new_goals = goals.list.slice()
-
-                new_goals[ind].state = "Done"
-
-                setGoals({list: new_goals});
-
+        let j = 0;
+        for(let i=0;i<new_goals.length;i++){
+            if(new_goals[i].id === goal.id){
+                j = i;
+                break;
             }
-            
-             return <li key={goal.name}>{goal.name}, Created on: {goal.dateCreated}, 
-                    Status: {goal.state} <input type="button" value="Mark as Done"
-                    onClick={() => handleClick(ind)}/></li>
-        })}
-        </ul>;
+        }
+        
+        new_goals[j] = goal;
+        setGoals({list: new_goals})
+    }
 
-    return <div>{gg}</div>
+    const deleteGoal = (goal: Goal) => {
+        
+        const old_goals = goals.list.slice();
+        let new_goals: Goals = {list: []};
+
+        for(let i=0;i<old_goals.length;i++){
+            if(old_goals[i].id === goal.id){
+                continue;
+            }
+            new_goals.list.push(old_goals[i]);
+        }
+
+        setGoals(new_goals);
+    }
+
+    const addGoal = () => {
+        
+    }
+
+    // let goalslist = <ul>
+    //     {goals.list.map((goal, ind) => 
+    //        <Goal goal={goal} setGoal={setGoal} deleteGoal={deleteGoal} />)}
+    //     </ul>;
+
+    return <div>
+        <button onClick={addGoal}>+</button>
+        {/* {goalslist} */}
+        </div>
 }
 
 export default GoalsList;
