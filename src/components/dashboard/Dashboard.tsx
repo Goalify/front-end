@@ -9,9 +9,10 @@ function Dashboard(){
     const [userGoals, setUserGoals] = React.useState<Goals>({list: []});
     const curToken = useContext(userToken);
     console.log(curToken);
+    
     return <div> 
         <h2>Dashboard</h2>
-          <GoalsList list={userGoals.list}/> 
+          
         </div>
 }
 

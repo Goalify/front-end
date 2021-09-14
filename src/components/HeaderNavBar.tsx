@@ -5,14 +5,13 @@ import {
    BrowserRouter as Router,
    Switch,
    Route,
-   Link,
-   Redirect
+   Link
  } from "react-router-dom";
 
 import AboutUs from "./AboutUs";
 import Dashboard from "./dashboard/Dashboard";
 
-const HeaderNavBar = (props: Goals) => {
+const HeaderNavBar = () => {
         
    return <div>
       <Router>
