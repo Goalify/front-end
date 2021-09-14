@@ -1,14 +1,13 @@
 import * as React from 'react'
 import {Goals, Goal} from '../../tsInterfaces/interfaces'
 import {goal1, goal2, goal3} from "../../testcases/samples"
+import GoalItem from './Goal';
 
 
 function GoalsList(){
-
-    let response: Goals = {list: [goal1, goal2, goal3]};
     
-    const [goals, setGoals] = React.useState<Goals>({list: response.list});
-
+    const [goals, setGoals] = React.useState<Goals>({list: [goal1, goal2, goal3]});
+    console.log(goals);
     const setGoal = (goal: Goal) => {
         const new_goals = goals.list.slice();
 
@@ -19,9 +18,9 @@ function GoalsList(){
                 break;
             }
         }
-        
         new_goals[j] = goal;
-        setGoals({list: new_goals})
+        setGoals({list: new_goals});
+        
     }
 
     const deleteGoal = (goal: Goal) => {
@@ -45,7 +44,7 @@ function GoalsList(){
 
     let goalslist = <ul>
         {goals.list.map((goal, ind) => 
-           <GoalItem goal={goal} setGoal={setGoal} deleteGoal={deleteGoal} />)}
+           <li key={goal.id}><GoalItem goal={goal} setGoal={setGoal} deleteGoal={deleteGoal} /></li>)}
         </ul>;
 
     return <div>

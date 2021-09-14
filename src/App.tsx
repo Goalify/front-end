@@ -15,9 +15,8 @@ function App(){
     const history = useHistory();
     
     const currToken = useContext(userToken);
-    console.log(currToken.token);
-
-    if (!currToken.token){
+    console.log(currToken.token + " Hi");
+    if (currToken.token === "false"){
         history.push('/login')
     }
 
@@ -35,7 +34,7 @@ function App(){
                 
                 <Route exact path="/">
                     
-                    {currToken.token != "" ? <div><HeaderNavBar /><Dashboard /><Footer /></div> : <Register />}
+                    {currToken.token !== "false" ? <div><HeaderNavBar /><Dashboard /><Footer /></div> : <Register />}
                 </Route>
                 <Route path="/register">
                     <Register />
