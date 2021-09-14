@@ -7,14 +7,18 @@ import {Goal, Goals, User} from "./tsInterfaces/interfaces"
 
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
-export const userToken = createContext({token: false, setToken: (token: boolean) => {}});
+export const userToken = createContext({
+  token: "", 
+  id: "",
+  setToken: (token: string) => {}});
 
 export function Index(){
 
-  const [token, setToken] = useState<boolean>(false);
+  const [token, setToken] = useState<string>("");
+  const [id, setId] = useState<string>("");
 
   return(
-    <userToken.Provider value={{token: token, setToken: setToken}}>
+    <userToken.Provider value={{token: token, id: id, setToken: setToken}}>
       <Router>
         <App />
       </Router>

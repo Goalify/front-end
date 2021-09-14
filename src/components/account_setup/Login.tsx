@@ -20,48 +20,46 @@ const Login = () => {
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();        
 
-        const response = await axios.post(
-            'http://localhost:4001/login',
-            {                
-                "username": username,
-                "password": password
-            },
-            {
-                headers: 
-                { 
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                }
-            }
-          )
-        console.log(await response.data)
+        // const response = await axios.post(
+        //     'http://localhost:4001/login',
+        //     {                
+        //         "username": username,
+        //         "password": password
+        //     },
+        //     {
+        //         headers: 
+        //         { 
+        //             'Content-Type': 'application/json',
+        //             'Access-Control-Allow-Origin': '*'
+        //         }
+        //     }
+        //   )
+        // console.log(await response.data)
         
-        curToken.setToken(true);
+        curToken.setToken("test");
 
         history.push('/dashboard');
-        // TODO useContext
     }
     
     return (<div>
             <form onSubmit={(event) => {handleSubmit(event)}}>
                 <div className="container">  
-                    <label className="uname">
+                    <label>
                     Username:
                     <input required ref={usernameRef} type="text" name="name" placeholder="Enter Username"
                     onChange={(event) => {setUsername(event.target.value);}}
                     />
                     </label>
 
-                    <label className="psw">
+                    <label>
                     Password:
                     <input required type="password" name="password" placeholder="Enter Password" 
                     onChange={(event) => {setPassword(event.target.value);}}/>
                     </label>
                 </div>
                 
-                <div className="container" style={{backgroundColor: "#f1f1f1"}}>
                 <input type="submit" value="submit" />
-                </div>
+                
             </form>
                 Don't have an account?
                 <Link to="/register">
