@@ -34,6 +34,7 @@ function App(){
                 </Route>
                 
                 <Route exact path="/">
+                    
                     {currToken.token != "" ? <div><HeaderNavBar /><Dashboard /><Footer /></div> : <Register />}
                 </Route>
                 <Route path="/register">
@@ -54,7 +55,9 @@ function App(){
                 </Route>
 
                 <Route path="/discover">
-                    Discover component to be implemented
+                    <HeaderNavBar />
+                    <h2>Discover component to be implemented</h2>
+                    <Footer />
                 </Route>
                 <Route path="/">
                     <HeaderNavBar />
