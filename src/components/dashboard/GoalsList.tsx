@@ -2,11 +2,13 @@ import * as React from 'react'
 import {Goals, Goal} from '../../tsInterfaces/interfaces'
 import {goal1, goal2, goal3, goal4} from "../../testcases/samples"
 import GoalItem from './Goal';
+import AddGoalForm from './AddGoalForm';
 
 
 function GoalsList(){
     
-    const [goals, setGoals] = React.useState<Goals>({list: [goal1, goal2, goal3, goal4]});
+    const [goals, setGoals] = React.useState<Goals>({list: [goal1, goal2]});
+    const [visibileGoalForm, setVisibleGoalForm] = React.useState<boolean>(false);
 
     const setGoal = (goal: Goal) => {
         const new_goals = goals.list.slice();
@@ -38,8 +40,14 @@ function GoalsList(){
         setGoals(new_goals);
     }
 
-    const addGoal = () => {
-        
+    const showGoalForm = () => {
+        setVisibleGoalForm(x => !x);
+    }
+
+    const addGoal = (goal: Goal) => {
+        const new_goals = goals.list.slice();
+        new_goals.push(goal);
+        setGoals({list: new_goals});
     }
 
     let goalslist = <ul>
@@ -48,7 +56,8 @@ function GoalsList(){
         </ul>;
 
     return <div>
-        <button onClick={addGoal}>+</button>
+        <button onClick={showGoalForm}>+</button>
+        {visibileGoalForm ? <AddGoalForm addGoal={addGoal}/>: null}
         {goalslist}
         </div>
 }
