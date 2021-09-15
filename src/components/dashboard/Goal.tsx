@@ -25,7 +25,7 @@ function DbClickField(props: {text: string, setText: any}){
             onDoubleClick={() => {
                 setToggle(false)
             }}
-        >{(props.text == "") ? "N/A" : props.text}</p>
+        >{props.text}</p>
         ) : (
         <input 
             autoFocus
@@ -135,6 +135,20 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
         props.setGoal(new_goal);
     }
 
+    function renderMilestones(){
+        let milestoneList = [];
+        for(var i = 0 ; i < props.goal.milestones.length ; i++){
+            milestoneList.push(
+                <div>
+                    <DbClickField text={props.goal.milestones[i].name} setText={editMilestoneName()}></DbClickField>
+                    <DbClickField text={props.goal.milestones[i].description} setText={}></DbClickField>
+                    <DbClickField text={props.goal.milestones[i].state} setText={}></DbClickField>
+                </div>
+            )
+        }
+    }
+
+
     return(
         <div>
             <div>
@@ -150,8 +164,9 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
                     <option value="Public">Public</option>
                     <option value="Private">Private</option>
                 </select>
-
+                <DbClickField text={goal.deadline} setText={edit_deadline}></DbClickField>
             </div>
+            {renderMilestones()}
         </div>
     );
 
