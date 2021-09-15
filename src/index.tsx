@@ -6,6 +6,8 @@ import App from "./App"
 import {Goal, Goals, User} from "./tsInterfaces/interfaces"
 import { authenticate, logOut } from './components/common/utilities';
 import {BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom'
+import GoalStats from './components/dashboard/statistics/GoalStats';
+import { goal1 } from './testcases/samples';
 
 export function Index(){
 
@@ -25,9 +27,6 @@ export function Index(){
 }
 
 ReactDOM.render(
-
-
-
   <React.StrictMode>
     <Index />
   </React.StrictMode>,

@@ -18,7 +18,7 @@ export interface Goal {
     state: string,
     name: string,
     description: string,
-    milestones: milestone[],
+    milestones: milestones,
     published: boolean,
     deadline: string,
     dateFinished: string,

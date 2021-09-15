@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {Goals} from '../../../tsInterfaces/interfaces'
 
-function Stats(Goals: Goals){
+function Stats(props: {goals: Goals}){
     
 }
 

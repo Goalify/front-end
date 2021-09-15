@@ -12,7 +12,9 @@ const AddGoalForm = (props: {addGoal: (goal: Goal) => void}) => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         
-        let dateCreated = getCurrentDateFormat();
+        let today = new Date("Wed, 27 July 2016 07:45:00 UTC+3");
+
+        let dateCreated = today.toLocaleString();
 
         let goal: Goal = {
             id: getUserId(),
@@ -23,7 +25,7 @@ const AddGoalForm = (props: {addGoal: (goal: Goal) => void}) => {
             state: "idle",
             published: false,
             dateFinished: "",
-            milestones: [],
+            milestones: {list: []},
         }
         props.addGoal(goal);
     }

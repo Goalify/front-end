@@ -69,20 +69,11 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
         new_goal.published = (published === "public");
         props.setGoal(new_goal);
     }
-
-    function renderMilestones(){
-        let milestoneList = [];
-        for(var i = 0 ; i < props.goal.milestones.length ; i++){
-            milestoneList.push(
-                <div>
-                    <DbClickField text={props.goal.milestones[i].name} setText={editMilestoneName()}></DbClickField>
-                    <DbClickField text={props.goal.milestones[i].description} setText={}></DbClickField>
-                    <DbClickField text={props.goal.milestones[i].state} setText={}></DbClickField>
-                </div>
-            )
-        }
+    function edit_deadline(deadline: string){
+        let new_goal = JSON.parse(JSON.stringify(goal));
+        new_goal.deadline = deadline;
+        props.setGoal(new_goal);
     }
-
 
     return(
         <div>
@@ -101,7 +92,6 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
                 </select>
                 <DbClickField text={goal.deadline} setText={edit_deadline}></DbClickField>
             </div>
-            {renderMilestones()}
         </div>
     );
 
