@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useContext } from 'react';
 
-export interface milestones{
+export interface milestone{
     id: string,
     setMilestone: any,
     state: boolean,
@@ -9,12 +9,16 @@ export interface milestones{
     description: string;
 }
 
+export interface milestones{
+    list: milestone[];
+}
+
 export interface Goal {
     id: string,
     state: string,
     name: string,
     description: string,
-    milestones: milestones[],
+    milestones: milestone[],
     published: boolean,
     deadline: string,
     dateCreated: string;

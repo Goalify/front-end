@@ -17,7 +17,7 @@ export const goal1: Goal = {
     description: "this is the description",
     milestones: [],
     published: true,
-    deadline: "03",
+    deadline: "12/Sep",
     dateCreated: "10/Sep",
 }
 
@@ -28,7 +28,7 @@ export const goal2: Goal = {
     description: "easy goal",
     milestones: [],
     published: false,
-    deadline: "03",
+    deadline: "24/Sep",
     dateCreated: "22/Sep",
 }
 
@@ -39,7 +39,7 @@ export const goal3: Goal = {
     description: "learn bella ciao song",
     milestones: [],
     published: false,
-    deadline: "03",
+    deadline: "14/Oct",
     dateCreated: "10/Oct",
 }
 
@@ -50,6 +50,6 @@ export const goal4: Goal = {
     description: "learn bella ciao song",
     milestones: [],
     published: true,
-    deadline: "03",
+    deadline: "11/Nov",
     dateCreated: "10/Oct",
 }
