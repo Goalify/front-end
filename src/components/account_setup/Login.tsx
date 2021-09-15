@@ -2,15 +2,18 @@ import axios from "axios";
 import {useState, useEffect, useRef, FormEvent, useContext} from "react";
 import { Link, useHistory } from "react-router-dom";
 import { HttpResponse } from "../../tsInterfaces/interfaces";
-import { userToken } from "../../index";
+import { authenticate } from "../common/utilities";
 const Login = () => {
     
     const usernameRef = useRef<HTMLInputElement>(null);
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const curToken = useContext(userToken);
 
     const history = useHistory();
+
+    if(authenticate()){
+        history.push('/dashboard');
+    }
 
     useEffect(() => {
         if (usernameRef && usernameRef.current)
@@ -36,8 +39,8 @@ const Login = () => {
         //   )
         // console.log(await response.data)
         
-        curToken.setToken("darwish");
-
+        localStorage.setItem('access_token', 'true');
+        localStorage.setItem('id', 'fasd');
         history.push('/dashboard');
     }
     

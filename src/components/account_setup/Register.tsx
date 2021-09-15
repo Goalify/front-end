@@ -1,11 +1,11 @@
 import * as React from "react";
 import { BrowserRouter as Router, Route, Redirect, Link, useHistory } from "react-router-dom";
 import Dashboard from "../dashboard/Dashboard";
-import { userToken } from "../../index";
 import { NodeBuilderFlags } from "typescript";
-
+import { authenticate } from "../common/utilities";
 
 const Register = () => {
+
     const [name, setName] = React.useState<string>("");
     const [email, setEmail] = React.useState<string>("");
     const [password, setPassword] = React.useState<string>("");
@@ -13,6 +13,9 @@ const Register = () => {
     const [flag, setFlag] = React.useState<boolean>(false);
     const history = useHistory();
 
+    if(authenticate()){
+        history.push('/dashboard');
+    }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
