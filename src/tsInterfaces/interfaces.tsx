@@ -15,7 +15,8 @@ export interface Goal {
     name: string,
     description: string,
     milestones: milestones[],
-    public: boolean,
+    published: boolean,
+    deadline: string,
     dateCreated: string;
 };
 
