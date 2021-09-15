@@ -1,29 +1,26 @@
-import React, {useState, createContext} from 'react';
+import React, {useState, createContext, useContext} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from "./App"
 import {Goal, Goals, User} from "./tsInterfaces/interfaces"
-
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-
-export const userToken = createContext({
-  token: "", 
-  id: "",
-  setToken: (token: string) => {}});
+import { authenticate, logOut } from './components/common/utilities';
+import {BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom'
 
 export function Index(){
 
-  const [token, setToken] = useState<string>("");
-  const [id, setId] = useState<string>("");
+  const history = useHistory();
 
+  if(!authenticate()){
+    if(history){
+      history.push('/login');
+    }
+  }
+  
   return(
-    <userToken.Provider value={{token: token, id: id, setToken: setToken}}>
       <Router>
         <App />
       </Router>
-    </userToken.Provider>
-
   )
 }
 
