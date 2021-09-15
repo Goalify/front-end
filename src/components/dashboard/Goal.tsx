@@ -41,6 +41,7 @@ function DbClickField(props: {text: string, setText: any}){
 }
 
 function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
+    
     let goal = props.goal;
     
     function edit_id(id: string){

@@ -7,16 +7,14 @@ import Login from './components/account_setup/Login';
 import {useState, useContext, createContext} from 'react'
 import { User } from './tsInterfaces/interfaces';
 import Register from './components/account_setup/Register';
-import {userToken} from './index'
 import HeaderNavBar from './components/HeaderNavBar';
+import { authenticate } from './components/common/utilities';
 
 function App(){
     
     const history = useHistory();
     
-    const currToken = useContext(userToken);
-
-    if (currToken.token === ""){
+    if (!authenticate()){
         history.push('/login')
     }
 
@@ -34,7 +32,7 @@ function App(){
                 
                 <Route exact path="/">
                     
-                    {currToken.token !== "false" ? <div><HeaderNavBar /><Dashboard /></div> : <Register />}
+                    {authenticate() ? <div><HeaderNavBar /><Dashboard /></div> : <Register />}
                 </Route>
                 <Route path="/register">
                     <Register />

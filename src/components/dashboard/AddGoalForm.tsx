@@ -1,6 +1,6 @@
 import React, {FormEvent, useState, useRef, useEffect, useContext} from 'react'
 import { Goal, milestones, milestone } from '../../tsInterfaces/interfaces'
-import { userToken } from '../..';
+import { getUserId } from '../common/utilities';
 
 const AddGoalForm = (props: {addGoal: (goal: Goal) => void}) => {
 
@@ -8,7 +8,6 @@ const AddGoalForm = (props: {addGoal: (goal: Goal) => void}) => {
     const [description, setDescription] = useState<string>("");
     const [deadline, setDeadline] = useState<string>("");    
     const nameRef = useRef<HTMLInputElement>(null);
-    const userContext = useContext(userToken);
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -17,9 +16,9 @@ const AddGoalForm = (props: {addGoal: (goal: Goal) => void}) => {
         
         let today = new Date();
         let dateCreated = nlBEFormatter.format(today);
-        
+
         let goal: Goal = {
-            id: userContext.id,
+            id: getUserId(),
             name: name,
             description: description,
             deadline: deadline,

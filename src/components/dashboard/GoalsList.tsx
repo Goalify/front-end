@@ -6,7 +6,7 @@ import AddGoalForm from './AddGoalForm';
 
 
 function GoalsList(){
-    
+
     const [goals, setGoals] = React.useState<Goals>({list: [goal1, goal2]});
     const [visibileGoalForm, setVisibleGoalForm] = React.useState<boolean>(false);
 
