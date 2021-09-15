@@ -16,6 +16,7 @@ export const goal1: Goal = {
     name: "Lose Weight",
     description: "this is the description",
     milestones: [],
+    public: true,
     dateCreated: "10/Sep",
 }
 
@@ -25,6 +26,7 @@ export const goal2: Goal = {
     name: "kick dwik's ass",
     description: "easy goal",
     milestones: [],
+    public: false,
     dateCreated: "22/Sep",
 }
 
@@ -34,5 +36,16 @@ export const goal3: Goal = {
     name: "play the piano",
     description: "learn bella ciao song",
     milestones: [],
+    public: false,
+    dateCreated: "10/Oct",
+}
+
+export const goal4: Goal = {
+    id: "4",
+    state: "idle",
+    name: "play the piano",
+    description: "learn bella ciao song",
+    milestones: [],
+    public: true,
     dateCreated: "10/Oct",
 }

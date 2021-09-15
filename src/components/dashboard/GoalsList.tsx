@@ -1,13 +1,13 @@
 import * as React from 'react'
 import {Goals, Goal} from '../../tsInterfaces/interfaces'
-import {goal1, goal2, goal3} from "../../testcases/samples"
+import {goal1, goal2, goal3, goal4} from "../../testcases/samples"
 import GoalItem from './Goal';
 
 
 function GoalsList(){
     
-    const [goals, setGoals] = React.useState<Goals>({list: [goal1, goal2, goal3]});
-    console.log(goals);
+    const [goals, setGoals] = React.useState<Goals>({list: [goal1, goal2, goal3, goal4]});
+
     const setGoal = (goal: Goal) => {
         const new_goals = goals.list.slice();
 
