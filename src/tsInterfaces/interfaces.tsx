@@ -3,9 +3,9 @@ import { useContext } from 'react';
 
 export interface milestone{
     id: string,
-    setMilestone: any,
     state: boolean,
-    name: string,
+    dateFinished: string,
+    dateCreated: string,
     description: string;
 }
 
@@ -21,6 +21,7 @@ export interface Goal {
     milestones: milestone[],
     published: boolean,
     deadline: string,
+    dateFinished: string,
     dateCreated: string;
 };
 

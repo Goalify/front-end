@@ -1,6 +1,6 @@
 import React, {FormEvent, useState, useRef, useEffect, useContext} from 'react'
 import { Goal, milestones, milestone } from '../../tsInterfaces/interfaces'
-import { getUserId } from '../common/utilities';
+import { getCurrentDateFormat, getUserId } from '../common/utilities';
 
 const AddGoalForm = (props: {addGoal: (goal: Goal) => void}) => {
 
@@ -12,10 +12,7 @@ const AddGoalForm = (props: {addGoal: (goal: Goal) => void}) => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         
-        const nlBEFormatter = new Intl.DateTimeFormat('nl-BE');
-        
-        let today = new Date();
-        let dateCreated = nlBEFormatter.format(today);
+        let dateCreated = getCurrentDateFormat();
 
         let goal: Goal = {
             id: getUserId(),
@@ -25,6 +22,7 @@ const AddGoalForm = (props: {addGoal: (goal: Goal) => void}) => {
             dateCreated: dateCreated,
             state: "idle",
             published: false,
+            dateFinished: "",
             milestones: [],
         }
         props.addGoal(goal);
