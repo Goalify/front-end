@@ -1,5 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import {Goal, milestones} from "../../tsInterfaces/interfaces";
+
+
+
+function DbClickField(props: {text: string, setText: any}){
+    const [toggle, setToggle] = React.useState(true);    
+    const [userText, setUserText] = React.useState(props.text);
+
+
+    const handleBlur = () => {
+        if(userText === ""){
+            setUserText(props.text);
+            setToggle(true);
+            return;
+        }
+        setToggle(true);
+        props.setText(userText);
+    }    
+
+    return(
+        toggle ? (
+        <p
+            placeholder="please enter some text"
+            onDoubleClick={() => {
+                setToggle(false)
+            }}
+        >{(props.text == "") ? "N/A" : props.text}</p>
+        ) : (
+        <input 
+            autoFocus
+            type='text'
+            placeholder="please enter some text"
+            value={userText}
+            onChange={(event) => {setUserText(event.target.value)}}
+            onKeyDown={(event) => {if(event.key == "Enter") {handleBlur()}}}
+            onBlur={() => handleBlur()}
+        />
+        )
+    );
+}
 
 function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
     let goal = props.goal;
@@ -99,8 +138,8 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
     return(
         <div>
             <div>
-                <p>{goal.name}</p>
-                <p>{goal.description}</p>
+                <DbClickField text={goal.name} setText={edit_name}></DbClickField>
+                <DbClickField text={goal.description} setText={edit_description}></DbClickField>
                 <p>{goal.dateCreated}</p>
                 <select onChange={(value) => (edit_state(value.target.value))} value={goal.state}>
                     <option value="completed">Completed</option>
