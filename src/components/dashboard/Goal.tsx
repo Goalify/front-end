@@ -57,16 +57,8 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
         props.setGoal(new_goal);
     }
     function edit_name(name: string){
-        let new_goal: Goal = {
-            id: goal.id,
-            name: name,
-            description: goal.description,
-            dateCreated: goal.dateCreated,
-            state: goal.state,
-            published: goal.published,
-            deadline: goal.deadline,
-            milestones: goal.milestones
-        }
+        let new_goal = JSON.parse(JSON.stringify(goal));
+        new_goal.name = name;
         props.setGoal(new_goal);
     }
     function edit_description(description: string){
@@ -75,19 +67,6 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
             name: goal.name,
             description: description,
             dateCreated: goal.dateCreated,
-            state: goal.state,
-            published: goal.published,
-            deadline: goal.deadline,
-            milestones: goal.milestones
-        }
-        props.setGoal(new_goal);
-    }
-    function edit_dateCreated(dateCreated: string){
-        let new_goal: Goal = {
-            id: goal.id,
-            name: goal.name,
-            description: goal.description,
-            dateCreated: dateCreated,
             state: goal.state,
             published: goal.published,
             deadline: goal.deadline,
@@ -154,7 +133,7 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
             <div>
                 <DbClickField text={goal.name} setText={edit_name}></DbClickField>
                 <DbClickField text={goal.description} setText={edit_description}></DbClickField>
-                <p>{goal.dateCreated}</p>
+                <p>Created on: {goal.dateCreated}</p>
                 <select onChange={(value) => (edit_state(value.target.value))} value={goal.state}>
                     <option value="completed">Completed</option>
                     <option value="in progress">In Progress</option>

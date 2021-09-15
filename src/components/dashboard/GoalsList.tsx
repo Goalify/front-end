@@ -48,6 +48,7 @@ function GoalsList(){
         const new_goals = goals.list.slice();
         new_goals.push(goal);
         setGoals({list: new_goals});
+        setVisibleGoalForm(x => !x);
     }
 
     let goalslist = <ul>

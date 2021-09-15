@@ -11,9 +11,13 @@ const AddGoalForm = (props: {addGoal: (goal: Goal) => void}) => {
     const userContext = useContext(userToken);
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();        
+        event.preventDefault();
+        
+        const nlBEFormatter = new Intl.DateTimeFormat('nl-BE');
+        
         let today = new Date();
-        let dateCreated = today.getDate()+"/"+today.getMonth()+"/"+today.getFullYear();
+        let dateCreated = nlBEFormatter.format(today);
+        
         let goal: Goal = {
             id: userContext.id,
             name: name,
