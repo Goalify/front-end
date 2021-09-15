@@ -11,6 +11,8 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
             description: goal.description,
             dateCreated: goal.dateCreated,
             state: goal.state,
+            published: goal.published,
+            deadline: goal.deadline,
             milestones: goal.milestones
         }
         props.setGoal(new_goal);
@@ -22,6 +24,8 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
             description: goal.description,
             dateCreated: goal.dateCreated,
             state: goal.state,
+            published: goal.published,
+            deadline: goal.deadline,
             milestones: goal.milestones
         }
         props.setGoal(new_goal);
@@ -33,6 +37,8 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
             description: description,
             dateCreated: goal.dateCreated,
             state: goal.state,
+            published: goal.published,
+            deadline: goal.deadline,
             milestones: goal.milestones
         }
         props.setGoal(new_goal);
@@ -44,6 +50,8 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
             description: goal.description,
             dateCreated: dateCreated,
             state: goal.state,
+            published: goal.published,
+            deadline: goal.deadline,
             milestones: goal.milestones
         }
         props.setGoal(new_goal);
@@ -55,6 +63,34 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
             description: goal.description,
             dateCreated: goal.dateCreated,
             state: state,
+            published: goal.published,
+            deadline: goal.deadline,
+            milestones: goal.milestones
+        }
+        props.setGoal(new_goal);
+    }
+    function edit_published(published: string){
+        let new_goal: Goal = {
+            id: goal.id,
+            name: goal.name,
+            description: goal.description,
+            dateCreated: goal.dateCreated,
+            state: goal.state,
+            published: (published === "Public"),
+            deadline: goal.deadline,
+            milestones: goal.milestones
+        }
+        props.setGoal(new_goal);
+    }
+    function edit_deadline(deadline: string){
+        let new_goal: Goal = {
+            id: goal.id,
+            name: goal.name,
+            description: goal.description,
+            dateCreated: goal.dateCreated,
+            state: goal.state,
+            published: goal.published,
+            deadline: deadline,
             milestones: goal.milestones
         }
         props.setGoal(new_goal);
@@ -66,11 +102,16 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
                 <p>{goal.name}</p>
                 <p>{goal.description}</p>
                 <p>{goal.dateCreated}</p>
-                <select id="lang" onChange={(value) => (edit_state(value.target.value))} value={goal.state}>
+                <select onChange={(value) => (edit_state(value.target.value))} value={goal.state}>
                     <option value="completed">Completed</option>
                     <option value="in progress">In Progress</option>
                     <option value="idle">Idle</option>
                 </select>
+                <select onChange={(value) => (edit_published(value.target.value))} value={goal.published ? "Public" : "Private"}>
+                    <option value="Public">Public</option>
+                    <option value="Private">Private</option>
+                </select>
+
             </div>
         </div>
     );
