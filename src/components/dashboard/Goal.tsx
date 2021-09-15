@@ -44,16 +44,8 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
     let goal = props.goal;
     
     function edit_id(id: string){
-        let new_goal: Goal = {
-            id: id,
-            name: goal.name,
-            description: goal.description,
-            dateCreated: goal.dateCreated,
-            state: goal.state,
-            published: goal.published,
-            deadline: goal.deadline,
-            milestones: goal.milestones
-        }
+        let new_goal = JSON.parse(JSON.stringify(goal));
+        new_goal.id = id;
         props.setGoal(new_goal);
     }
     function edit_name(name: string){
@@ -62,55 +54,18 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
         props.setGoal(new_goal);
     }
     function edit_description(description: string){
-        let new_goal: Goal = {
-            id: goal.id,
-            name: goal.name,
-            description: description,
-            dateCreated: goal.dateCreated,
-            state: goal.state,
-            published: goal.published,
-            deadline: goal.deadline,
-            milestones: goal.milestones
-        }
+        let new_goal = JSON.parse(JSON.stringify(goal));
+        new_goal.description = description;
         props.setGoal(new_goal);
     }
     function edit_state(state: string){
-        let new_goal: Goal = {
-            id: goal.id,
-            name: goal.name,
-            description: goal.description,
-            dateCreated: goal.dateCreated,
-            state: state,
-            published: goal.published,
-            deadline: goal.deadline,
-            milestones: goal.milestones
-        }
+        let new_goal = JSON.parse(JSON.stringify(goal));
+        new_goal.state = state;
         props.setGoal(new_goal);
     }
     function edit_published(published: string){
-        let new_goal: Goal = {
-            id: goal.id,
-            name: goal.name,
-            description: goal.description,
-            dateCreated: goal.dateCreated,
-            state: goal.state,
-            published: (published === "Public"),
-            deadline: goal.deadline,
-            milestones: goal.milestones
-        }
-        props.setGoal(new_goal);
-    }
-    function edit_deadline(deadline: string){
-        let new_goal: Goal = {
-            id: goal.id,
-            name: goal.name,
-            description: goal.description,
-            dateCreated: goal.dateCreated,
-            state: goal.state,
-            published: goal.published,
-            deadline: deadline,
-            milestones: goal.milestones
-        }
+        let new_goal = JSON.parse(JSON.stringify(goal));
+        new_goal.published = (published === "public");
         props.setGoal(new_goal);
     }
 
