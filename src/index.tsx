@@ -6,6 +6,8 @@ import App from "./App"
 import {Goal, Goals, User} from "./tsInterfaces/interfaces"
 import { authenticate, logOut } from './components/common/utilities';
 import {BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom'
+import store from "./redux/store";
+import { Provider } from 'react-redux';
 
 export function Index(){
 
@@ -19,7 +21,9 @@ export function Index(){
   
   return(
       <Router>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </Router>
   )
 }
