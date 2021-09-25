@@ -19,5 +19,5 @@ The goal of this application is to assist people put forward objectives and keep
 This project was created and is maintained by: Hasan Khadra, Mahmood Darwish, Mohamad Dwik, Mohammad Shahin.
 
 <a name="rup"></a>
-## 3. Rational Unified Process document
+## 4. Rational Unified Process document
 [Link to RUP document.](https://docs.google.com/document/d/1t8vu45-3wV-ALB6AVPE5GnD7QVhFffHv/edit?usp=sharing&ouid=110336088534504218509&rtpof=true&sd=true)
