@@ -1,8 +1,9 @@
-# Goalify  <img  align="right" src="https://github.com/Goalify/front-end/blob/main/Goalify-logos.jpeg" width="250" height="250" />
+# Goalify  <img  align="right" src="https://github.com/Goalify/front-end/blob/main/src/Goalify-logos.jpeg" width="250" height="250" />
 ## Table of Contents
 1. [ Introdution. ](#intro)
 2. [ Goal ](#goal)
 3. [ Authors ](#auth)
+4. [ RUP ](#rup)
 
 <a name="intro"></a>
 ## 1. Introdution
@@ -16,3 +17,7 @@ The goal of this application is to assist people put forward objectives and keep
 <a name="auth"></a>
 ## 3. Authors
 This project was created and is maintained by: Hasan Khadra, Mahmood Darwish, Mohamad Dwik, Mohammad Shahin.
+
+<a name="rup"></a>
+## 3. Rational Unified Process document
+[Link to RUP document.](https://docs.google.com/document/d/1t8vu45-3wV-ALB6AVPE5GnD7QVhFffHv/edit?usp=sharing&ouid=110336088534504218509&rtpof=true&sd=true)
