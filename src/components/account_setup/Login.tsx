@@ -1,21 +1,23 @@
 import {useState, useEffect, useRef, FormEvent, useContext, MouseEventHandler} from "react";
-import { Link, useHistory } from "react-router-dom";
-import { HttpResponse } from "../../tsInterfaces/interfaces";
-import { authenticate } from "../common/utilities";
+import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import React from 'react';
 import * as actions from "../../redux/account_setup/actions";
 import { Dispatch } from "redux"
 import { useSelector, useDispatch } from "react-redux"
-
-
+import { useAuth } from "../../hooks/useAuth";
+import { Form, Button } from 'react-bootstrap';
+import './Login.css';
+import logo from '../../Goalify-logos.jpeg';
 const Login: React.FC = () => {
     
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
 
     const dispatch: Dispatch<UserAction> = useDispatch();
+    const auth = useAuth();
     const user = useSelector((state: UserState) => state.user);
+
     useEffect(() => {
         if (usernameRef && usernameRef.current)
             usernameRef.current.focus()
@@ -26,8 +28,7 @@ const Login: React.FC = () => {
         const requestOptions = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 username: usernameRef.current.value,
@@ -38,7 +39,7 @@ const Login: React.FC = () => {
         fetch('http://localhost:4001/login', requestOptions)
             .then(response => response.json())
             .then(data => {
-                console.log(data.token);
+                document.cookie = `token=${data.token};Secure`;
                 dispatch({
                     type: actions.ADD_USER,
                     user: {
@@ -51,29 +52,34 @@ const Login: React.FC = () => {
             });
     }
 
-    if(authenticate()){
+    if(auth || user){
         return <Redirect to="/dashboard" />;
     }
+    return <div>
+            <div className='login-form'>
+                <img src={logo}/>
+                <Form>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type="username" placeholder="Username" ref={usernameRef} required/>
+                    </Form.Group>
 
-    return (<div>
-                <div className="container">  
-                    <label>
-                    Username:
-                    <input id="username" required ref={usernameRef} type="text" name="name" placeholder="Enter Username"/>
-                    </label>
-
-                    <label>
-                    Password:
-                    <input id="password" ref={passwordRef} required type="password" name="password" placeholder="Enter Password"/>
-                    </label>
-                </div>
-                
-                <button id="submit" value="submit" onClick={handleSubmit} />
-                Don't have an account?
-                <Link to="/register">
-                    Register.
-                </Link>
-            </div>)
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" ref={passwordRef} required/>
+                    </Form.Group>
+                    <Button variant="primary" type="button" onClick={handleSubmit}>
+                        Login
+                    </Button>
+                    <div className = 'register'>
+                        Don't have an account?
+                        <Link to="/register">
+                            Register.
+                        </Link>
+                    </div>
+                </Form>
+            </div>
+        </div>
 }
 
 export default Login;

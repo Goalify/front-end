@@ -10,6 +10,10 @@ const reducer = (state: UserState = initialState, action: UserAction) => {
             return {
                 user: action.user
             }
+        case actions.REMOVE_USER:
+            return {
+                user: null
+            }
     }
     return state;
 }
