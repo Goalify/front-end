@@ -1,0 +1,14 @@
+.login-form{
+    margin-top: 20vh;
+    margin-left: 40vw;
+    margin-right: 40vw;
+}
+img {
+    max-width:100%;
+    height:auto;
+}
+
+.btn-primary{
+    width: 5vw;
+    margin-left: 7.5vw;
+}
