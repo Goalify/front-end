@@ -75,9 +75,7 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
         for(var i = 0 ; i < props.goal.milestones.length ; i++){
             milestoneList.push(
                 <div>
-                    <DbClickField text={props.goal.milestones[i].name} setText={editMilestoneName()}></DbClickField>
-                    <DbClickField text={props.goal.milestones[i].description} setText={}></DbClickField>
-                    <DbClickField text={props.goal.milestones[i].state} setText={}></DbClickField>
+                    hello
                 </div>
             )
         }
@@ -99,9 +97,7 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
                     <option value="Public">Public</option>
                     <option value="Private">Private</option>
                 </select>
-                <DbClickField text={goal.deadline} setText={edit_deadline}></DbClickField>
             </div>
-            {renderMilestones()}
         </div>
     );
 

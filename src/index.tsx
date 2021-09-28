@@ -1,35 +1,20 @@
-import React, {useState, createContext, useContext} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from "./App"
-import {Goal, Goals, User} from "./tsInterfaces/interfaces"
-import { authenticate, logOut } from './components/common/utilities';
-import {BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom'
-
-export function Index(){
-
-  const history = useHistory();
-
-  if(!authenticate()){
-    if(history){
-      history.push('/login');
-    }
-  }
-  
-  return(
-      <Router>
-        <App />
-      </Router>
-  )
-}
+import {BrowserRouter as Router} from 'react-router-dom'
+import store from "./redux/store";
+import { Provider } from 'react-redux';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
-
-
-
   <React.StrictMode>
-    <Index />
+    <Router>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

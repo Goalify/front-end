@@ -1,66 +1,76 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route, Redirect, Link, useHistory } from "react-router-dom";
-import Dashboard from "../dashboard/Dashboard";
-import { NodeBuilderFlags } from "typescript";
-import { authenticate } from "../common/utilities";
+import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
+import { Form, Button } from 'react-bootstrap';
+import './Login.css';
+import logo from '../../Goalify-logos.jpeg';
+import { useRef } from "react";
+import { useHistory } from "react-router";
 
 const Register = () => {
+    const usernameRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
+    const emailRef = useRef<HTMLInputElement>(null);
 
-    const [name, setName] = React.useState<string>("");
-    const [email, setEmail] = React.useState<string>("");
-    const [password, setPassword] = React.useState<string>("");
-    const [repeatPassword, setRepeatPassword] = React.useState<string>("");
-    const [flag, setFlag] = React.useState<boolean>(false);
     const history = useHistory();
 
-    if(authenticate()){
-        history.push('/dashboard');
+    const handleSubmit = ()  =>  {
+        if (!usernameRef ||
+            !passwordRef ||
+            !emailRef ||
+            !usernameRef.current ||
+            !passwordRef.current ||
+            !emailRef.current) return;
+        
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: usernameRef.current.value,
+                password: passwordRef.current.value,
+                email: emailRef.current.value
+            })
+        }
+
+        fetch('http://localhost:4001/register', requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                history.push('/login');
+            });
     }
 
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>){
-        event.preventDefault();
-        if(password !== repeatPassword){
-            alert("Passwords are not identical!!!");
-            return;
-        }
-        if(password.length < 5){
-            alert("Password is weak make sure to have at least 5 charchers!!!");
-            return;
-        }
-        // TODO: Send information to the back-end.
-        setFlag(true);
-    }
+    return <div>
+                <div className='login-form'>
+                    <img src={logo}/>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control type="email" placeholder="Email" ref={emailRef} required/>
+                        </Form.Group>
+                
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control type="username" placeholder="Username" ref={usernameRef} required/>
+                        </Form.Group>
 
-    if(!flag){
-        return (
-            <div>
-                <form onSubmit={(event) => {handleSubmit(event)}}> 
-                        <label>
-                            Name:
-                            <input type="text" value={name} onChange={(event) => {setName(event.target.value)}} />
-                            E-mail:
-                            <input type="text" value={email} onChange={(event) => {setEmail(event.target.value)}} />
-                            Password:
-                            <input type="password" value={password} onChange={(event) => {setPassword(event.target.value)}} />
-                            Repeat Password:
-                            <input type="password" value={repeatPassword} onChange={(event) => {setRepeatPassword(event.target.value)}} />
-                        </label>
-                    <input type="submit" value="Submit" />
-                </form>
-                <div>
-                    Already have an account? 
-                    <br/>
-                    <Link to="/login">
-                        Log in.
-                    </Link>
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Password" ref={passwordRef} required/>
+                        </Form.Group>
+                
+                        <Button variant="primary" type="button" onClick={handleSubmit}>
+                            Register
+                        </Button>
+                        <div className = 'register'>
+                            Have an account?
+                            <Link to="/login">
+                                Login.
+                            </Link>
+                        </div>
+                    </Form>
                 </div>
             </div>
-        );
-    }
-    else{
-        history.push("/login");
-        return <div>Thank you for joining</div>;
-    }
 }
 
 export default Register;
