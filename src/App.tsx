@@ -31,15 +31,11 @@ function App(){
                     <AboutUs />
                     <Footer />
                 </Route>
-                
-                <Route exact path="/">
-                    
-                    {authenticate() ? <div><HeaderNavBar /><Dashboard /></div> : <Register />}
-                </Route>
               
                 <Route path="/dashboard">
                     <HeaderNavBar />
                     <Dashboard />
+                    <Footer />
                 </Route>
                
             
@@ -57,6 +53,7 @@ function App(){
                 <Route path="/">
                     <HeaderNavBar />
                     <Dashboard />
+                    <Footer />
                 </Route>
             </Switch>
 

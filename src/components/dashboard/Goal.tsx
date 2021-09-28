@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import {Goal, milestones} from "../../tsInterfaces/interfaces";
+import React from "react";
+import {Goal} from "../../tsInterfaces/interfaces";
 import "./Goal.css"
+import {MilestonesList} from "./MilestoneList"
 
-
-function DbClickField(props: {text: string, setText: any}){
+export function DbClickField(props: {text: string, setText: any}){
     const [toggle, setToggle] = React.useState(true);    
     const [userText, setUserText] = React.useState(props.text);
 
@@ -16,7 +16,7 @@ function DbClickField(props: {text: string, setText: any}){
         }
         setToggle(true);
         props.setText(userText);
-    }    
+    }
 
     return(
         toggle ? (
@@ -43,12 +43,6 @@ function DbClickField(props: {text: string, setText: any}){
 function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
     
     let goal = props.goal;
-    
-    function edit_id(id: string){
-        let new_goal = JSON.parse(JSON.stringify(goal));
-        new_goal.id = id;
-        props.setGoal(new_goal);
-    }
     function edit_name(name: string){
         let new_goal = JSON.parse(JSON.stringify(goal));
         new_goal.name = name;
@@ -94,6 +88,7 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
                 <div className="deadline">
                     Deadline: <DbClickField text={goal.deadline} setText={edit_deadline}></DbClickField>
                 </div>
+                <MilestonesList milestonesList = {goal.milestones}></MilestonesList>
             </div>
         </div>
     );
