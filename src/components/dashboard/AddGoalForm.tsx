@@ -1,5 +1,5 @@
 import React, {FormEvent, useState, useRef, useEffect, useContext} from 'react'
-import { Goal, milestones, milestone } from '../../tsInterfaces/interfaces'
+import { Goal } from '../../tsInterfaces/interfaces'
 import { getUserId } from '../common/utilities';
 
 const AddGoalForm = (props: {addGoal: (goal: Goal) => void}) => {
