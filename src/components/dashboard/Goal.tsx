@@ -70,17 +70,11 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
         props.setGoal(new_goal);
     }
 
-    function renderMilestones(){
-        let milestoneList = [];
-        for(var i = 0 ; i < props.goal.milestones.length ; i++){
-            milestoneList.push(
-                <div>
-                    hello
-                </div>
-            )
-        }
+    function edit_deadline(deadline: string){
+        let new_goal = JSON.parse(JSON.stringify(goal));
+        new_goal.deadline = deadline;
+        props.setGoal(new_goal);
     }
-
 
     return(
         <div>
