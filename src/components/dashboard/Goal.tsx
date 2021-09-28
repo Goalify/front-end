@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {Goal, milestones} from "../../tsInterfaces/interfaces";
-
+import "./Goal.css"
 
 
 function DbClickField(props: {text: string, setText: any}){
@@ -69,7 +69,6 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
         new_goal.published = (published === "public");
         props.setGoal(new_goal);
     }
-
     function edit_deadline(deadline: string){
         let new_goal = JSON.parse(JSON.stringify(goal));
         new_goal.deadline = deadline;
@@ -91,6 +90,9 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
                     <option value="Public">Public</option>
                     <option value="Private">Private</option>
                 </select>
+                <div className="deadline">
+                    Deadline: <DbClickField text={goal.deadline} setText={edit_deadline}></DbClickField>
+                </div>
             </div>
         </div>
     );
