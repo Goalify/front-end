@@ -15,7 +15,8 @@ export const goal1: Goal = {
     state: "InProgress",
     name: "Lose Weight",
     description: "this is the description",
-    milestones: [],
+    milestones: {list: [{id: "1", state: true, description: "description", dateFinished: "fds", dateCreated: 'ww'},
+    {id: "1", state: false, description: "description", dateFinished: "fds", dateCreated: 'ww'}]},
     published: true,
     deadline: "12/Sep",
     dateCreated: "2 Days ago",
@@ -30,6 +31,7 @@ export const goal2: Goal = {
     published: false,
     deadline: "24/Sep",
     dateCreated: "4 Days ago",
+
 }
 
 export const goal3: Goal = {
@@ -37,9 +39,11 @@ export const goal3: Goal = {
     state: "idle",
     name: "play the piano",
     description: "learn bella ciao song",
-    milestones: [],
+    milestones: {list: [{id: "1", state: true, description: "description", dateFinished: "fds", dateCreated: 'ww'},
+    {id: "1", state: false, description: "description", dateFinished: "fds", dateCreated: 'ww'}]},
     published: false,
     deadline: "14/Oct",
+    dateFinished: "",
     dateCreated: "10/Oct",
 }
 
@@ -48,8 +52,10 @@ export const goal4: Goal = {
     state: "idle",
     name: "play the piano",
     description: "learn bella ciao song",
-    milestones: [],
+    milestones: {list: [{id: "1", state: true, description: "description", dateFinished: "fds", dateCreated: 'ww'},
+    {id: "1", state: false, description: "description", dateFinished: "fds", dateCreated: 'ww'}]},
     published: true,
     deadline: "11/Nov",
+    dateFinished: "",
     dateCreated: "10/Oct",
 }

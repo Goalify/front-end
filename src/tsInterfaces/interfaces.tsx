@@ -5,6 +5,7 @@ export interface Milestone{
     id: string,
     state: boolean,
     name: string
+
 }
 
 
@@ -14,8 +15,10 @@ export interface Goal {
     name: string,
     description: string,
     milestones: Milestone[],
+
     published: boolean,
     deadline: string,
+    dateFinished: string,
     dateCreated: string;
 };
 

@@ -108,6 +108,7 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
     </div>
 
     /*    <div>
+
             <div>
                 <DbClickField text={goal.name} setText={edit_name}></DbClickField>
                 <DbClickField text={goal.description} setText={edit_description}></DbClickField>
