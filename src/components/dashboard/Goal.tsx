@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import {Goal, milestones} from "../../tsInterfaces/interfaces";
+import React from "react";
+import {Goal} from "../../tsInterfaces/interfaces";
 import "./Goal.css"
+import {MilestonesList} from "./MilestoneList"
+import { Card, Button, Collapse, Modal, Form } from 'react-bootstrap';
 
-
-function DbClickField(props: {text: string, setText: any}){
+export function DbClickField(props: {text: string, setText: any}){
     const [toggle, setToggle] = React.useState(true);    
     const [userText, setUserText] = React.useState(props.text);
 
@@ -16,26 +17,30 @@ function DbClickField(props: {text: string, setText: any}){
         }
         setToggle(true);
         props.setText(userText);
-    }    
+    }
 
     return(
         toggle ? (
-        <p
+        <div
             placeholder="please enter some text"
             onDoubleClick={() => {
                 setToggle(false)
             }}
-        >{props.text}</p>
+        >{props.text}</div>
         ) : (
-        <input 
-            autoFocus
-            type='text'
-            placeholder="please enter some text"
-            value={userText}
-            onChange={(event) => {setUserText(event.target.value)}}
-            onKeyDown={(event) => {if(event.key == "Enter") {handleBlur()}}}
-            onBlur={() => handleBlur()}
-        />
+            <Form>
+                <Form.Group className="mb-3">
+                    <Form.Control 
+                        onChange={(event) => { setUserText(event.target.value) }}
+                        type="text" 
+                        placeholder="Please enter some text"
+                        value={userText}
+                        onKeyDown={(event) => {if(event.key == "Enter") {handleBlur()}}}
+                        onBlur={() => handleBlur()}
+                />
+                </Form.Group>
+            </Form>
+
         )
     );
 }
@@ -43,12 +48,6 @@ function DbClickField(props: {text: string, setText: any}){
 function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
     
     let goal = props.goal;
-    
-    function edit_id(id: string){
-        let new_goal = JSON.parse(JSON.stringify(goal));
-        new_goal.id = id;
-        props.setGoal(new_goal);
-    }
     function edit_name(name: string){
         let new_goal = JSON.parse(JSON.stringify(goal));
         new_goal.name = name;
@@ -75,8 +74,41 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
         props.setGoal(new_goal);
     }
 
-    return(
-        <div>
+    const [open, setOpen] = React.useState<boolean>(false);
+    const statusColors = {
+        Done: 'green',
+        ToDo: 'cornflower-blue',
+        InProgress: "#ad9c21",
+        Failed: 'Red'
+    }
+    const statusStyle = {
+        color: (statusColors as any)[goal.state]
+    }
+
+    return <div>
+        <Card className="text-center"  >
+            <Card.Header onClick={() => setOpen(!open)}>
+                Goal#{goal.id}
+            </Card.Header>
+            <Card.Body >
+                <Card.Title>
+                    <DbClickField text={goal.name} setText={edit_name}></DbClickField>
+                </Card.Title>
+                <div style={statusStyle}>
+                    {goal.state}
+                </div>
+                <Collapse in={open}>
+                     <Card.Text>
+                        <DbClickField text={goal.description} setText={edit_description}></DbClickField>
+                     </Card.Text>
+                </Collapse>
+            </Card.Body>
+            <Card.Footer className="text-muted">{goal.dateCreated}</Card.Footer>
+        </Card>
+    </div>
+
+    /*    <div>
+
             <div>
                 <DbClickField text={goal.name} setText={edit_name}></DbClickField>
                 <DbClickField text={goal.description} setText={edit_description}></DbClickField>
@@ -93,9 +125,10 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
                 <div className="deadline">
                     Deadline: <DbClickField text={goal.deadline} setText={edit_deadline}></DbClickField>
                 </div>
+                <MilestonesList milestonesList = {goal.milestones}></MilestonesList>
             </div>
         </div>
-    );
+    );*/
 
 }
 

@@ -12,28 +12,26 @@ import {Goal, Goals} from '../tsInterfaces/interfaces'
 
 export const goal1: Goal = {
     id: "1",
-    state: "in progress",
+    state: "InProgress",
     name: "Lose Weight",
     description: "this is the description",
     milestones: {list: [{id: "1", state: true, description: "description", dateFinished: "fds", dateCreated: 'ww'},
     {id: "1", state: false, description: "description", dateFinished: "fds", dateCreated: 'ww'}]},
     published: true,
     deadline: "12/Sep",
-    dateFinished: "",
-    dateCreated: "10/Sep",
+    dateCreated: "2 Days ago",
 }
 
 export const goal2: Goal = {
     id: "2",
-    state: "completed",
-    name: "kick dwik's ass",
-    description: "easy goal",
-    milestones: {list: [{id: "1", state: true, description: "description", dateFinished: "fds", dateCreated: 'ww'},
-    {id: "1", state: false, description: "description", dateFinished: "fds", dateCreated: 'ww'}]},
+    state: "Done",
+    name: "Finish SSAD project",
+    description: "description here",
+    milestones: [],
     published: false,
     deadline: "24/Sep",
-    dateFinished: "",
-    dateCreated: "22/Sep",
+    dateCreated: "4 Days ago",
+
 }
 
 export const goal3: Goal = {
