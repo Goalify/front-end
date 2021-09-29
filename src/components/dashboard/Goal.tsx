@@ -2,6 +2,7 @@ import React from "react";
 import {Goal} from "../../tsInterfaces/interfaces";
 import "./Goal.css"
 import {MilestonesList} from "./MilestoneList"
+import { Card, Button, Collapse, Modal, Form } from 'react-bootstrap';
 
 export function DbClickField(props: {text: string, setText: any}){
     const [toggle, setToggle] = React.useState(true);    
@@ -20,22 +21,26 @@ export function DbClickField(props: {text: string, setText: any}){
 
     return(
         toggle ? (
-        <p
+        <div
             placeholder="please enter some text"
             onDoubleClick={() => {
                 setToggle(false)
             }}
-        >{props.text}</p>
+        >{props.text}</div>
         ) : (
-        <input 
-            autoFocus
-            type='text'
-            placeholder="please enter some text"
-            value={userText}
-            onChange={(event) => {setUserText(event.target.value)}}
-            onKeyDown={(event) => {if(event.key == "Enter") {handleBlur()}}}
-            onBlur={() => handleBlur()}
-        />
+            <Form>
+                <Form.Group className="mb-3">
+                    <Form.Control 
+                        onChange={(event) => { setUserText(event.target.value) }}
+                        type="text" 
+                        placeholder="Please enter some text"
+                        value={userText}
+                        onKeyDown={(event) => {if(event.key == "Enter") {handleBlur()}}}
+                        onBlur={() => handleBlur()}
+                />
+                </Form.Group>
+            </Form>
+
         )
     );
 }
@@ -69,9 +74,40 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
         props.setGoal(new_goal);
     }
 
+    const [open, setOpen] = React.useState<boolean>(false);
+    const statusColors = {
+        Done: 'green',
+        ToDo: 'cornflower-blue',
+        InProgress: "#ad9c21",
+        Failed: 'Red'
+    }
+    const statusStyle = {
+        color: (statusColors as any)[goal.state]
+    }
 
-    return(
-        <div>
+    return <div>
+        <Card className="text-center"  >
+            <Card.Header onClick={() => setOpen(!open)}>
+                Goal#{goal.id}
+            </Card.Header>
+            <Card.Body >
+                <Card.Title>
+                    <DbClickField text={goal.name} setText={edit_name}></DbClickField>
+                </Card.Title>
+                <div style={statusStyle}>
+                    {goal.state}
+                </div>
+                <Collapse in={open}>
+                     <Card.Text>
+                        <DbClickField text={goal.description} setText={edit_description}></DbClickField>
+                     </Card.Text>
+                </Collapse>
+            </Card.Body>
+            <Card.Footer className="text-muted">{goal.dateCreated}</Card.Footer>
+        </Card>
+    </div>
+
+    /*    <div>
             <div>
                 <DbClickField text={goal.name} setText={edit_name}></DbClickField>
                 <DbClickField text={goal.description} setText={edit_description}></DbClickField>
@@ -91,7 +127,7 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
                 <MilestonesList milestonesList = {goal.milestones}></MilestonesList>
             </div>
         </div>
-    );
+    );*/
 
 }
 

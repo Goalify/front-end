@@ -12,24 +12,24 @@ import {Goal, Goals} from '../tsInterfaces/interfaces'
 
 export const goal1: Goal = {
     id: "1",
-    state: "in progress",
+    state: "InProgress",
     name: "Lose Weight",
     description: "this is the description",
     milestones: [],
     published: true,
     deadline: "12/Sep",
-    dateCreated: "10/Sep",
+    dateCreated: "2 Days ago",
 }
 
 export const goal2: Goal = {
     id: "2",
-    state: "completed",
-    name: "kick dwik's ass",
-    description: "easy goal",
+    state: "Done",
+    name: "Finish SSAD project",
+    description: "description here",
     milestones: [],
     published: false,
     deadline: "24/Sep",
-    dateCreated: "22/Sep",
+    dateCreated: "4 Days ago",
 }
 
 export const goal3: Goal = {

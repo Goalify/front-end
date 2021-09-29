@@ -1,12 +1,14 @@
 import * as React from "react";
 import GoalsList from "./GoalsList";
-
+import HeaderNavBar from "components/HeaderNavBar";
+import Footer from "components/common/Footer";
 
 function Dashboard(){
 
   return <div> 
-      <h2>Dashboard</h2>
-        <GoalsList />
+        <HeaderNavBar />
+          <GoalsList />
+        <Footer />
       </div>
 }
 
