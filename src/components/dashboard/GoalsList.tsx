@@ -92,7 +92,7 @@ const AddGoalModal = ({addGoal, show, handleClose} : any) => {
             state: "ToDo",
             published: false,
             milestones: [],
-            dateFinished: "$#2"
+            dateFinished: null,
         }
         addGoal(goal);
         handleClose();

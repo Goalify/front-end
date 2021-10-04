@@ -9,7 +9,8 @@ function Dashboard(){
 
   return <div> 
         <HeaderNavBar />
-          <GoalStats goal={goal1}/>
+          <GoalsList />
+          {/* <GoalStats goal={goal1}/> */}
         <Footer />
       </div>
 }

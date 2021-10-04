@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { goal1 } from 'testcases/samples';
 import {Goals, Goal, Milestone} from '../../../tsInterfaces/interfaces'
 
 function GoalStats(props: {goal: Goal}){
@@ -18,10 +19,12 @@ function GoalStats(props: {goal: Goal}){
         completePercentage = countCompletedMilstones(props.goal.milestones) / props.goal.milestones.length;   
     }
 
-    let timeToComplete = 0;
-    
+    // let timeSpent = 0;
+    // if(props.goal.milestones.every((milestone) => milestone.state == true)){
+    //     timeSpent = props.goal.dateFinished - props.goal.dateCreated;
+    // }
 
-    return(<div>The goal is {completePercentage*100}% complete</div>)
+    return(<div>{(completePercentage*100).toFixed(0)}% of milestones are complete</div>)
 }
 
 export default GoalStats;

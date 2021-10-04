@@ -14,10 +14,9 @@ export interface Goal {
     name: string,
     description: string,
     milestones: Milestone[],
-
     published: boolean,
     deadline: string,
-    dateFinished: string,
+    dateFinished: string | null,
     dateCreated: string;
 };
 
