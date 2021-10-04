@@ -5,7 +5,6 @@ export interface Milestone{
     id: string,
     state: boolean,
     name: string
-
 }
 
 
