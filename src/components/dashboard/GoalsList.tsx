@@ -79,9 +79,11 @@ const AddGoalModal = ({addGoal, show, handleClose} : any) => {
             alert('Fields shouldn\'t be empty')
             return;
         }
-
+        
         let today = new Date();
-        let dateCreated = 'Now';
+
+        const nlBEFormatter = new Intl.DateTimeFormat('nl-BE');
+        let dateCreated = nlBEFormatter.format(today);
 
         let goal: Goal = {
             id: 'id',
