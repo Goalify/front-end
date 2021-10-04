@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {Goal} from "../../tsInterfaces/interfaces";
 import "./Goal.css"
 import {MilestonesList} from "./MilestoneList"
 import { Card, Button, Collapse, Modal, Form } from 'react-bootstrap';
 
 export function DbClickField(props: {text: string, setText: any}){
+
+    const nameRef = React.useRef<any>();
+
     const [toggle, setToggle] = React.useState(true);    
     const [userText, setUserText] = React.useState(props.text);
 
+    useEffect(() => {
+        if(nameRef && nameRef.current){
+            nameRef.current.focus()
+        }
+    }, [toggle])
 
     const handleBlur = () => {
         if(userText === ""){
@@ -31,6 +39,7 @@ export function DbClickField(props: {text: string, setText: any}){
             <Form>
                 <Form.Group className="mb-3">
                     <Form.Control 
+                        ref = {nameRef}
                         onChange={(event) => { setUserText(event.target.value) }}
                         type="text" 
                         placeholder="Please enter some text"

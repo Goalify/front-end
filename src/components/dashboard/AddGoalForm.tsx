@@ -26,7 +26,7 @@ const AddGoalForm = (props: {addGoal: (goal: Goal) => void}) => {
             state: "idle",
             published: false,
             dateFinished: "",
-            milestones: {list: []},
+            milestones: [],
         }
         props.addGoal(goal);
     }

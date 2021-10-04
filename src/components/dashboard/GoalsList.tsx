@@ -1,12 +1,12 @@
 import * as React from 'react'
 import {Goals, Goal} from '../../tsInterfaces/interfaces'
-import {goal1, goal2, goal3, goal4} from "../../testcases/samples"
+import {goal1, goal2, goal3} from "../../testcases/samples"
 import GoalItem from './Goal';
 import { Card, Button, Collapse, Modal, Form } from 'react-bootstrap';
 import './GoalsList.css';
 function GoalsList() {
 
-    const [goals, setGoals] = React.useState<Goals>({ list: [goal1, goal2] });
+    const [goals, setGoals] = React.useState<Goals>({ list: [goal1, goal2, goal3] });
     const [visibileGoalForm, setVisibleGoalForm] = React.useState<boolean>(false);
     const [modalShow, setModalShow] = React.useState<boolean>(false);
 
@@ -75,6 +75,10 @@ const AddGoalModal = ({addGoal, show, handleClose} : any) => {
     
     const handleAdd = () => {
         if (!nameRef || !nameRef.current || !descriptionRef || !descriptionRef.current) return;
+        if(!nameRef.current.value){
+            alert('Fields shouldn\'t be empty')
+            return;
+        }
 
         let today = new Date();
         let dateCreated = 'Now';
@@ -88,6 +92,7 @@ const AddGoalModal = ({addGoal, show, handleClose} : any) => {
             state: "ToDo",
             published: false,
             milestones: [],
+            dateFinished: null,
         }
         addGoal(goal);
         handleClose();
@@ -106,11 +111,11 @@ const AddGoalModal = ({addGoal, show, handleClose} : any) => {
             <Form>
                 <Form.Group className="mb-3">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control ref={nameRef} type="text" placeholder="Goal name" />
+                    <Form.Control required ref={nameRef} type="text" placeholder="Goal name" />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Description</Form.Label>
-                    <Form.Control ref={descriptionRef} type="text" placeholder="Goal description" />
+                    <Form.Control required ref={descriptionRef} type="text" placeholder="Goal description" />
                 </Form.Group>
             </Form>
         </Modal.Body>
