@@ -104,6 +104,9 @@ After all of the user authentications are handled by the middleware, the valid r
 
 We have decided to use Flask as the main framework for the core server because of its flexibility and the compatibility it embraces with the latest technologies. Moreover, it is easy and highly scalable on simple projects. Principles such as KISS and SOLID were followed during the development to make the process of debugging and adding new features simpler and more efficient. The core server is connected to a MySQL database, which stores all data except for the users’ credentials. MySQL was selected as it is secure, flexible, and easy to set up. 
 
+Showing how we applied SOLID to our front-end, we only let our classes have a single responsibilty. For example class `addGoalModal` is only resposible for adding a new goal. Class `DbClickField` only shows some text that can be edited by pressing twice on the text, and so on. We followed Liskov substitution principle by using typescript since it can easily swap components if they share the same contract. We followed interface segregation principle by having multiple interfaces (e.g. `goal`, `milestone`) instead of designing a single interface to substitute them all. We followed dependency inversion principle by making sure that child classes depended on abstraction from parent classes, for example the `GoalsList` sends functions to the class `GoalItem` and these functions will be used by the child class to edit the goal. `GoalItem` doesn't depend on the implementation of the funtions from `GoalsList`. Those functions can be edited without affecting the child class.
+
+We followed KISS principle by not over-engineering anything and using the simplest methods to achieve objectives. We don't for example use any advanced techniques in react in our front-end such as Compound Components, Props Getters, and State Reducer.
 
 <a name="arc"></a>
 ## 9. Architecture And Diagrams
