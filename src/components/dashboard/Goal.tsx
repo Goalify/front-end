@@ -72,9 +72,9 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
         new_goal.state = state;
         props.setGoal(new_goal);
     }
-    function edit_published(published: string){
+    function edit_published(published: boolean){
         let new_goal = JSON.parse(JSON.stringify(goal));
-        new_goal.published = (published === "public");
+        new_goal.published = published;
         props.setGoal(new_goal);
     }
     function edit_milestones(milestones: Milestone[]){
@@ -110,6 +110,10 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
                                 <option value="completed">Completed</option>
                                 <option value="in progress">In Progress</option>
                                 <option value="idle">Idle</option>
+                            </select>
+                            <select onChange={(value) => (edit_published((value.target.value === "public")))} value={goal.published ? "public" : "private"}>
+                                <option value="public">Public</option>
+                                <option value="private">Private</option>
                             </select>
                             <button type="button" className="btn-close" aria-label="Close" onClick={() => {props.deleteGoal(goal)}}></button>
                         </div>
