@@ -131,7 +131,9 @@ Schema Diagram:
 ![alt text](https://github.com/Goalify/front-end/blob/main/schemadiagram.jpg?raw=true)
 
 
+Sequence Diagram:
 
+![alt text](https://github.com/Goalify/front-end/blob/main/untitled.png?raw=true)
 
 <a name="auth"></a>
 ## 10. Authors
