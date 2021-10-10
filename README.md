@@ -115,17 +115,17 @@ Architecture:
 
 Front-End Class Diagram:
 
-![alt text](https://github.com/Goalify/front-end/blob/main/classdiagramfrontend.png?raw=true)
+![alt text](https://github.com/Goalify/front-end/blob/main/classdiagramfrontend.jpg?raw=true)
 
 
 Use Case Diagram:
 
-![alt text](https://github.com/Goalify/front-end/blob/main/usecasediagram.png?raw=true)
+![alt text](https://github.com/Goalify/front-end/blob/main/usecasediagram.jpg?raw=true)
 
 
 Schema Diagram:
 
-![alt text](https://github.com/Goalify/front-end/blob/main/schemadiagram.png?raw=true)
+![alt text](https://github.com/Goalify/front-end/blob/main/schemadiagram.jpg?raw=true)
 
 
 
