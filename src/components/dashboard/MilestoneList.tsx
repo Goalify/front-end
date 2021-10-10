@@ -21,11 +21,12 @@ function MilestoneItem(props: {milestone: Milestone, setMilestone: any, deleteMi
         <div>
             <DbClickField className="milestone-item" text={milestone.name} setText={edit_name}></DbClickField>
             Completed: <input type="checkbox" checked={milestone.state} onChange={(event) => edit_state(event)}/>
+            <button style={{"float":"none", "transform":"scale(0.7)"}} type="button" className="btn-close" aria-label="Close" onClick={() => {props.deleteMilestone(milestone)}}></button>
         </div>
     );
 }
 
-export function MilestonesList(props: {milestonesList: Milestone[]}){
+export function MilestonesList(props: {milestonesList: Milestone[], editMilestoneList: any}){
 
     const [milestones, setMilestones] = React.useState<Milestone[]>(props.milestonesList);
     const [modalShow, setModalShow] = React.useState<boolean>(false);
@@ -49,7 +50,7 @@ export function MilestonesList(props: {milestonesList: Milestone[]}){
         }
         new_milestones[j] = milestone;
         setMilestones(new_milestones);
-        
+        props.editMilestoneList(milestones)
     }
 
     const deleteMilestone = (milestone: Milestone) => {
@@ -65,6 +66,7 @@ export function MilestonesList(props: {milestonesList: Milestone[]}){
         }
 
         setMilestones(new_milestones);
+        props.editMilestoneList(milestones)
     }
 
     const handleKeyPress = (target: any) => {
@@ -82,7 +84,7 @@ export function MilestonesList(props: {milestonesList: Milestone[]}){
             return;
         }
         const newMilestone: Milestone = {
-            id: "new id",
+            id: new Date().getTime() + "asd",
             state: false,
             name: nameRef.current.value,
         }
@@ -91,6 +93,7 @@ export function MilestonesList(props: {milestonesList: Milestone[]}){
         new_milestones.push(newMilestone);
         setMilestones(new_milestones);
         setModalShow(false);
+        props.editMilestoneList(milestones)
     }
 
 
@@ -100,7 +103,6 @@ export function MilestonesList(props: {milestonesList: Milestone[]}){
 
     return (
         <div>
-            
             <Modal show={modalShow} onHide={() => setModalShow(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Add a new milestone</Modal.Title>
