@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import {Goal} from "../../tsInterfaces/interfaces";
+import {Goal, Milestone} from "../../tsInterfaces/interfaces";
 import "./Goal.css"
 import {MilestonesList} from "./MilestoneList"
 import { Card, Button, Collapse, Modal, Form } from 'react-bootstrap';
@@ -77,9 +77,9 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
         new_goal.published = (published === "public");
         props.setGoal(new_goal);
     }
-    function edit_deadline(deadline: string){
+    function edit_milestones(milestones: Milestone[]){
         let new_goal = JSON.parse(JSON.stringify(goal));
-        new_goal.deadline = deadline;
+        new_goal.milestones = milestones;
         props.setGoal(new_goal);
     }
 
@@ -105,15 +105,18 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
                 
                 <Collapse in={open}>
                     <div style={{"margin": "auto"}}>
-                        <select onChange={(value) => (edit_state(value.target.value))} value={goal.state}>
-                            <option value="completed">Completed</option>
-                            <option value="in progress">In Progress</option>
-                            <option value="idle">Idle</option>
-                        </select>
+                        <div>
+                            <select onChange={(value) => (edit_state(value.target.value))} value={goal.state}>
+                                <option value="completed">Completed</option>
+                                <option value="in progress">In Progress</option>
+                                <option value="idle">Idle</option>
+                            </select>
+                            <button type="button" className="btn-close" aria-label="Close" onClick={() => {props.deleteGoal(goal)}}></button>
+                        </div>
                         <Card.Text>
                             <DbClickField text={goal.description} setText={edit_description}></DbClickField>
                         </Card.Text>
-                        <MilestonesList milestonesList = {goal.milestones}></MilestonesList>
+                        <MilestonesList milestonesList = {goal.milestones} editMilestoneList = {edit_milestones}></MilestonesList>
                     </div>
                 </Collapse>
             </Card.Body>
@@ -121,30 +124,6 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
             <Card.Footer className="text-muted" style={{"padding": "1px"}}>{goal.dateCreated}</Card.Footer>
         </Card>
     </div>
-
-    /*    <div>
-
-            <div>
-                <DbClickField text={goal.name} setText={edit_name}></DbClickField>
-                <DbClickField text={goal.description} setText={edit_description}></DbClickField>
-                <p>Created on: {goal.dateCreated}</p>
-                <select onChange={(value) => (edit_state(value.target.value))} value={goal.state}>
-                    <option value="completed">Completed</option>
-                    <option value="in progress">In Progress</option>
-                    <option value="idle">Idle</option>
-                </select>
-                <select onChange={(value) => (edit_published(value.target.value))} value={goal.published ? "Public" : "Private"}>
-                    <option value="Public">Public</option>
-                    <option value="Private">Private</option>
-                </select>
-                <div className="deadline">
-                    Deadline: <DbClickField text={goal.deadline} setText={edit_deadline}></DbClickField>
-                </div>
-                <MilestonesList milestonesList = {goal.milestones}></MilestonesList>
-            </div>
-        </div>
-    );*/
-
 }
 
 export default GoalItem;

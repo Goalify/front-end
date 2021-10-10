@@ -7,7 +7,6 @@ export interface Milestone{
     name: string
 }
 
-
 export interface Goal {
     id: string,
     state: string,
