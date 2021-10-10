@@ -4,8 +4,10 @@
 2. [ Business Goals and Objectives ](#business)
 3. [ Requirements ](#req)
 4. [ Project Glossary ](#glossary)
-5. [ Technical Stack](#techstack)
-6. [ Authors ](#auth)
+5. [ Technical Stack ](#techstack)
+6. [ Stakeholders Roles. ](#stake)
+7. [ User Stories ](#stories)
+8. [ Authors ](#auth)
 
 <a name="intro"></a>
 ## 1. Introdution
@@ -50,6 +52,31 @@ The problem: the lack of motivation to get up and pursue whatever any of us is t
 - core-server: Python Flask
 - main database: MySQL
 
+
+<a name="stake"></a>
+## 6. Stakeholders Roles
+Stakeholder's Name | Roles | Responsibilities
+| :---: | :--- | :---
+Users  | Suggest new features, Report existing bugs. | Contact technical support to report bugs and problems. Provide feedback to improve the website.
+Board of executives  | Direct and lead the project. | Choosing the main functions of the project. Managing and organizing the whole project. Take lead in Decision Making.
+Investors | Providing financial support to the development process. | Determining if some features are worth the funding. Deciding the amount of money to spend on certain features. 
+Developers | Develop and maintain the platform. | Fixing bugs. Adding features. Unit testing.
+Project owners | Manage the project. | Accept or reject the project, and provide high level business requirements.
+QA testers | Assures the quality of the new features. | End to end testing.
+
+
+<a name="stories"></a>
+## 7. User Stoires
+User Type | User Story Title | User stories
+| :--- | :---: | :---
+Web User  | Registration | As a user, I can register into the website by entering my email and password and confirming the password so that I can login to the platform.
+Web User  | Login | As a user, I can log in to the website by entering my confidentials (email, password) so that I can use the platform.
+Web User | Profile | As a user, I should be able to upload my profile picture and add a nickname to my account. 
+Web User | Creating goals | As a user, I want to be able to add new goals so that I can have an organized to-do list.
+Web User | Progress tracking | As a user, I should be able to update my progress in any of my goals so that I can view the progression.
+Web User | Statistics | As a user, I want to generate stats about my progress so that I could have a better understanding of my performance.
+
+
 <a name="auth"></a>
-## 6. Authors
+## 8. Authors
 This project was created and is maintained by: Hasan Khadra, Mahmood Darwish, Mohamad Dwik, Mohammad Shahin.
