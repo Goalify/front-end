@@ -67,12 +67,18 @@ export function MilestonesList(props: {milestonesList: Milestone[]}){
         setMilestones(new_milestones);
     }
 
-    const addMilestone = (event: any) => {
-        event.preventDefault();
-        console.log("HI");
+    const handleKeyPress = (target: any) => {
+        if(target.charCode==13){
+            target.preventDefault();
+            addMilestone();
+        } 
+    }
+
+    const addMilestone = () => {
+
         if(!nameRef || !nameRef.current)return;
-       if(!nameRef.current.value){
-            alert('Fields shouldn\'t be empty')
+        if(!nameRef.current.value){
+            alert("Field Name shouldn't be empty")
             return;
         }
         const newMilestone: Milestone = {
@@ -104,7 +110,7 @@ export function MilestonesList(props: {milestonesList: Milestone[]}){
                         <Form.Group className="mb-3">
                             <Form.Label>Name</Form.Label>
                             <Form.Control required 
-                            ref={nameRef} type="text" placeholder="Milestone name" onSubmit={addMilestone}/>
+                            ref={nameRef} type="text" placeholder="Milestone name" onKeyPress={handleKeyPress}/>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -112,7 +118,7 @@ export function MilestonesList(props: {milestonesList: Milestone[]}){
                 <Button variant="secondary" onClick={() => setModalShow(false)}>
                     Close
                 </Button>
-                <Button variant="primary" type="submit" onSubmit={addMilestone}>
+                <Button variant="primary" onClick={addMilestone}>
                     Add
                 </Button>
                 </Modal.Footer>
