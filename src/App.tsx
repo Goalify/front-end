@@ -14,7 +14,6 @@ import { useAuth } from './hooks/useAuth';
 function App(){
     const auth = useAuth();
     const user = useSelector((state: UserState) => state.user);
-
     return <div>
         <Switch>
                 <Route path="/login">
@@ -33,9 +32,7 @@ function App(){
                 </Route>
               
                 <Route path="/dashboard">
-                    <HeaderNavBar />
                     <Dashboard />
-                    <Footer />
                 </Route>
                
             

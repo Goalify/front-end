@@ -1,45 +1,7 @@
 import React, {useState, useRef, FormEvent, useEffect, ChangeEventHandler, ChangeEvent} from "react";
 import {Goal, Milestone} from "../../tsInterfaces/interfaces";
 import {DbClickField} from "./Goal"
-
-const AddMilestoneForm = (props: {addMilestone: (milestone: Milestone) => void}) => {
-
-    const [name, setName] = useState<string>("");
-    const [description, setDescription] = useState<string>("");
-    const nameRef = useRef<HTMLInputElement>(null);
-
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        let milestone: Milestone = {
-            id: "456",
-            name: name,
-            state: false
-        }
-        props.addMilestone(milestone);
-    }
-
-    useEffect(() => {
-        if (nameRef && nameRef.current)
-            nameRef.current.focus()
-    }, []);
-
-    return (
-            <form onSubmit={(event) => {handleSubmit(event)}}>
-                <div>  
-                    <label>
-                    Name:
-                    <input required ref={nameRef} type="text" name="name" placeholder="Enter the milestone name"
-                    onChange={(event) => {setName(event.target.value);}}
-                    />
-                    </label>
-                </div>
-                <input type="submit" value="submit" />
-                
-            </form>
-
-    )
-}
+import {Modal, Button, Form, Card} from 'react-bootstrap';
 
 function MilestoneItem(props: {milestone: Milestone, setMilestone: any, deleteMilestone: any}){
 
@@ -57,20 +19,25 @@ function MilestoneItem(props: {milestone: Milestone, setMilestone: any, deleteMi
 
     return(
         <div>
-            <div>
-                <DbClickField text={milestone.name} setText={edit_name}></DbClickField>
-                <div>
-                    Completed: <input type="checkbox" checked={milestone.state} onChange={(event) => edit_state(event)}/>
-                </div>
-            </div>
+            <DbClickField className="milestone-item" text={milestone.name} setText={edit_name}></DbClickField>
+            Completed: <input type="checkbox" checked={milestone.state} onChange={(event) => edit_state(event)}/>
+            <button style={{"float":"none", "transform":"scale(0.7)"}} type="button" className="btn-close" aria-label="Close" onClick={() => {props.deleteMilestone(milestone)}}></button>
         </div>
     );
 }
 
-export function MilestonesList(props: {milestonesList: Milestone[]}){
+export function MilestonesList(props: {milestonesList: Milestone[], editMilestoneList: any}){
 
     const [milestones, setMilestones] = React.useState<Milestone[]>(props.milestonesList);
-    const [visibileMilestoneForm, setVisibileMilestoneForm] = React.useState<boolean>(false);
+    const [modalShow, setModalShow] = React.useState<boolean>(false);
+    const nameRef = React.useRef<HTMLInputElement>(null);
+    
+    useEffect(() => {
+        if(nameRef && nameRef.current){
+            nameRef.current.focus()
+        }
+    }, [])
+    
 
     const setMilestone = (milestone: Milestone) => {
         const new_milestones = milestones.slice();
@@ -84,7 +51,7 @@ export function MilestonesList(props: {milestonesList: Milestone[]}){
         }
         new_milestones[j] = milestone;
         setMilestones(new_milestones);
-        
+        props.editMilestoneList(new_milestones)
     }
 
     const deleteMilestone = (milestone: Milestone) => {
@@ -100,27 +67,69 @@ export function MilestonesList(props: {milestonesList: Milestone[]}){
         }
 
         setMilestones(new_milestones);
+        props.editMilestoneList(new_milestones)
     }
 
-    const showMilestoneForm = () => {
-        setVisibileMilestoneForm(x => !x);
+    const handleKeyPress = (target: any) => {
+        if(target.charCode==13){
+            target.preventDefault();
+            addMilestone();
+        } 
     }
 
-    const addMilestone = (milestone: Milestone) => {
+    const addMilestone = () => {
+
+        if(!nameRef || !nameRef.current)return;
+        if(!nameRef.current.value){
+            alert("Field Name shouldn't be empty")
+            return;
+        }
+        const newMilestone: Milestone = {
+            id: new Date().getTime() + "FDS",
+            state: false,
+            name: nameRef.current.value,
+        }
+
         const new_milestones = milestones.slice();
-        new_milestones.push(milestone);
+        new_milestones.push(newMilestone);
         setMilestones(new_milestones);
-        setVisibileMilestoneForm(x => !x);
+        setModalShow(false);
+        props.editMilestoneList(new_milestones)
     }
 
-    let milestoneList = <ul>
-        {milestones.map((milestone, ind) => 
-           <li key={milestone.id}><MilestoneItem milestone={milestone} setMilestone={setMilestone} deleteMilestone={deleteMilestone} /></li>)}
-        </ul>;
 
-    return <div>
-        <button onClick={showMilestoneForm}>+</button>
-        {visibileMilestoneForm ? <AddMilestoneForm addMilestone={addMilestone}/>: null}
-        {milestoneList}
-        </div>
+    let milestoneList = 
+        <div>{milestones.map((milestone, ind) => 
+           <MilestoneItem milestone={milestone} setMilestone={setMilestone} deleteMilestone={deleteMilestone} />)}</div>;
+
+    return (
+        <div>
+            <Modal show={modalShow} onHide={() => setModalShow(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Add a new milestone</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control required 
+                            ref={nameRef} type="text" placeholder="Milestone name" onKeyPress={handleKeyPress}/>
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={() => setModalShow(false)}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={addMilestone}>
+                    Add
+                </Button>
+                </Modal.Footer>
+            </Modal>
+            {milestoneList}
+            <div style={{"paddingBottom": "7px"}}>
+                <Button variant="primary" style={{"width": "20%", "margin": "auto"}} onClick={() => setModalShow(true)}>Add Milestone</Button>
+            </div>
+        </div>)
+        
 }

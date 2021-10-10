@@ -2,3 +2,10 @@
     display: flex;
     flex-direction: row;
 }
+.milestone-item{
+    padding-right: 1%;
+    display: inline-block;
+}
+.btn-close{
+    float: right
+}
