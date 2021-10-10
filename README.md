@@ -7,7 +7,8 @@
 5. [ Technical Stack ](#techstack)
 6. [ Stakeholders Roles. ](#stake)
 7. [ User Stories ](#stories)
-8. [ Authors ](#auth)
+8. [ Design Documentation ](#design)
+9. [ Authors ](#auth)
 
 <a name="intro"></a>
 ## 1. Introdution
@@ -76,7 +77,27 @@ Web User | Creating goals | As a user, I want to be able to add new goals so tha
 Web User | Progress tracking | As a user, I should be able to update my progress in any of my goals so that I can view the progression.
 Web User | Statistics | As a user, I want to generate stats about my progress so that I could have a better understanding of my performance.
 
+<a name="design"></a>
+## 8. Design Documentation:
+We decided to have one client web app used by users. Another administration interface might be introduced in the future.
+
+We are using ReactJS as our frontend framework since it’s simple and efficient. Typescript and linter were added to make sure the code is easily debugged, easily read, and as clean as possible. Using Redux to store and organize the data retrieved from the backend, making it available to all of the frontend components.
+
+Unit tests using Jest and Enzyme were added to make sure that future changes won’t break the existing code. The SOLID principle was followed to make each of our components visible and with clear responsibilities, each of our components does only one thing at a time.
+
+That client communicates with the backend microservices using a middleware/proxy called user-proxy, which is a Node ExpressJS app responsible for load-balancing and assuring the safety of the backend servers and microservices as well as the user’s data since such data might be sensitive. Typescript and Linter were also added to the middleware for the same purpose explained above. SOLID was also followed, as each of our API middlewares has only one clear job.
+
+User authentication will be done by user-proxy which communicates with its own MongoDB database, this was done to make sure that no one can access any of the backend microservices and databases unless they’re authored and have access to the exact resource they’re trying to access. A middleware function will be called before any of the API middle-points checking the authority of the accessor. 
+
+Here’s a sample diagram of the flow of a test post request to the endpoint/test:
+
+![picture alt](http://via.placeholder.com/200x150 "Title is optional")
+
+After all of the user authentications are handled by the middleware, the valid requests are sent to the core server. 
+
+We have decided to use Flask as the main framework for the core server because of its flexibility and the compatibility it embraces with the latest technologies. Moreover, it is easy and highly scalable on simple projects. Principles such as KISS and SOLID were followed during the development to make the process of debugging and adding new features simpler and more efficient. The core server is connected to a MySQL database, which stores all data except for the users’ credentials. MySQL was selected as it is secure, flexible, and easy to set up. 
+
 
 <a name="auth"></a>
-## 8. Authors
+## 9. Authors
 This project was created and is maintained by: Hasan Khadra, Mahmood Darwish, Mohamad Dwik, Mohammad Shahin.
