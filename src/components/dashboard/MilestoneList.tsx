@@ -82,7 +82,7 @@ export function MilestonesList(props: {milestonesList: Milestone[]}){
             return;
         }
         const newMilestone: Milestone = {
-            id: "new id",
+            id: new Date().getTime() + "FDS",
             state: false,
             name: nameRef.current.value,
         }

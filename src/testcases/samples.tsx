@@ -19,8 +19,8 @@ export const goal1: Goal = {
     {id: "3", state: false, name: "milestone3"}],
     published: true,
     deadline: "12/Sep",
-    dateCreated: "Now",
-    dateFinished: "fdas"
+    dateCreated: "10/9/2021",
+    dateFinished: null
 }
 
 export const goal2: Goal = {
@@ -31,8 +31,8 @@ export const goal2: Goal = {
     milestones: [],
     published: false,
     deadline: "24/Sep",
-    dateCreated: "4 Days ago",
-    dateFinished: "fdsa"
+    dateCreated: "10/7/2021",
+    dateFinished: "10/9/2021"
 }
 
 export const goal3: Goal = {
@@ -43,8 +43,8 @@ export const goal3: Goal = {
     milestones: [],
     published: false,
     deadline: "24/Sep",
-    dateCreated: "A week ago",
-    dateFinished: "fdsa"
+    dateCreated: "10/8/2021",
+    dateFinished: "10/9/2021"
 
 }
 

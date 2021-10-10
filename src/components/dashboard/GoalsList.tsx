@@ -4,6 +4,7 @@ import {goal1, goal2, goal3} from "../../testcases/samples"
 import GoalItem from './Goal';
 import { Card, Button, Collapse, Modal, Form } from 'react-bootstrap';
 import './GoalsList.css';
+import GoalStats from './statistics/GoalStats';
 function GoalsList() {
 
     const [goals, setGoals] = React.useState<Goals>({ list: [goal1, goal2, goal3] });
@@ -47,16 +48,12 @@ function GoalsList() {
         setVisibleGoalForm(x => !x);
     }
 
-    let goalslist = <ul>
-        {goals.list.map((goal, ind) =>
-            <li key={goal.id}><GoalItem goal={goal} setGoal={setGoal} deleteGoal={deleteGoal} /></li>)}
-    </ul>;
-    
     return <div style={{marginLeft: '20%', marginRight:'20%' }}>
         {goals.list.map((goal) =>
-            <GoalItem
+            <div><GoalItem
                 goal={goal} setGoal={setGoal} deleteGoal={deleteGoal} 
-            />)}
+            />
+            <GoalStats goal={goal} /></div>)}
         <Card className="text-center" onClick={() => setModalShow(true)}>
             <Card.Body >
                 <Card.Title>
