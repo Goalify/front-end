@@ -67,7 +67,9 @@ export function MilestonesList(props: {milestonesList: Milestone[]}){
         setMilestones(new_milestones);
     }
 
-    const addMilestone = () => {
+    const addMilestone = (event: any) => {
+        event.preventDefault();
+        console.log("HI");
         if(!nameRef || !nameRef.current)return;
        if(!nameRef.current.value){
             alert('Fields shouldn\'t be empty')
@@ -102,7 +104,7 @@ export function MilestonesList(props: {milestonesList: Milestone[]}){
                         <Form.Group className="mb-3">
                             <Form.Label>Name</Form.Label>
                             <Form.Control required 
-                            ref={nameRef} type="text" placeholder="Milestone name" />
+                            ref={nameRef} type="text" placeholder="Milestone name" onSubmit={addMilestone}/>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
