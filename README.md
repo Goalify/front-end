@@ -1,11 +1,11 @@
 # Goalify  <img  align="right" src="https://github.com/Goalify/front-end/blob/main/src/Goalify-logos.jpeg" width="250" height="250" />
 ## Table of Contents
-1. [ Introdution ](#intro)
+1. [ Introdution. ](#intro)
 2. [ Business Goals and Objectives ](#business)
 3. [ Requirements ](#req)
 4. [ Project Glossary ](#glossary)
 5. [ Technical Stack ](#techstack)
-6. [ Stakeholders Roles ](#stake)
+6. [ Stakeholders Roles. ](#stake)
 7. [ User Stories ](#stories)
 8. [ Design Documentation ](#design)
 9. [ Architecture And Diagrams ](#arc)
@@ -48,9 +48,15 @@ Competition: There are many apps out there made for the purpose of tracking goal
 
 <a name="glossary"></a>
 ## 4. Project Glossary
-- Goal: A desired ambition that a person aims to achieve.
 - Middle-ware: An intermediate server acting as an interface between the front-end and the back-end.
+- Core server: The server which stores all data other the users' credentials.
+- Goal: A desired ambition that a person aims to achieve.
 - Milestone: Partial actions and achievements necessary to make progress toward a particular goal.
+- Discover page: A page where latest public goals are published.
+- Private goal: A goal only visible by its creator.
+- Public goal: A goal that can visible on the discover page.
+- Access token: An access token contains the security credentials for a login session and identifies the user.
+- Authentication request: A request sent from the frontend to the middleware to check if the user is granted an access token. 
 
 <a name="techstack"></a>
 ## 5. Technical Stack
@@ -77,10 +83,15 @@ QA testers | Assures the quality of the new features. | End to end testing.
 ## 7. User Stoires
 User Type | User Story Title | User stories
 | :--- | :---: | :---
-Web User  | Registration | As a user, I can register into the website by entering my email and password and confirming the password so that I can login to the platform.
-Web User  | Login | As a user, I can log in to the website by entering my confidentials (email, password) so that I can use the platform.
+Web User  | Registration | As a user, I can register on the website by entering my email and password and confirming the password so that I can log in to the platform.
+Web User | Login | As a user, I want to able to log in to the website by entering my confidentials (email, password) so that I can use the platform. 
+Web User | Change confidentials | As a user, I want to be able to change my confidentials (email, password) in order to keep my account safe.
 Web User | Profile | As a user, I should be able to upload my profile picture and add a nickname to my account. 
 Web User | Creating goals | As a user, I want to be able to add new goals so that I can have an organized to-do list.
+Web User | Edit goals | As a user, I want to be able to edit my goals so that I can adjust my goals to new circumstances.
+Web User | Creating milestones | As a user, I want to be able to create milestones in a specific goal so that I can divide my goal into small achievable steps.
+Web User | Publish goals | As a user, I want to be able to publish my goals so I can share my progress. 
+Web User | View public goals | As a user, I want to be able to view other people's public goals so I can be more motiviated to achieve my own goals. 
 Web User | Progress tracking | As a user, I should be able to update my progress in any of my goals so that I can view the progression.
 Web User | Statistics | As a user, I want to generate stats about my progress so that I could have a better understanding of my performance.
 
