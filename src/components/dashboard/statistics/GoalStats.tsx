@@ -13,11 +13,13 @@ function GoalStats(props: {goal: Goal}){
         }
         return count;
     } 
-
+    console.log(props.goal.milestones);
     let completePercentageElement: JSX.Element = <div></div>;
     if(props.goal.milestones.length != 0){
+
         let completePercentage: number = countCompletedMilstones(props.goal.milestones) / props.goal.milestones.length;   
-        completePercentageElement = <div>The goal is {(completePercentage*100).toFixed(0)}% complete.  
+
+        completePercentageElement = <div>The goal is {(completePercentage*100).toFixed(0)}% complete. {"   "}
          {countCompletedMilstones(props.goal.milestones)}/{props.goal.milestones.length} milestones finished.</div>
     }
 
@@ -28,7 +30,6 @@ function GoalStats(props: {goal: Goal}){
         if(props.goal.dateFinished) 
             timeSpent = new Date(props.goal.dateFinished).getTime() - new Date(props.goal.dateCreated).getTime();
         timeSpentElement = <div>
-            The goal is 100% complete.
             Time spent: {msToTime(timeSpent)}
         </div>
     }

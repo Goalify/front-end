@@ -52,8 +52,8 @@ function GoalsList() {
         {goals.list.map((goal) =>
             <div><GoalItem
                 goal={goal} setGoal={setGoal} deleteGoal={deleteGoal} 
-            />
-            <GoalStats goal={goal} /></div>)}
+            /><GoalStats goal={goal} />
+            </div>)}
         <Card className="text-center" onClick={() => setModalShow(true)}>
             <Card.Body >
                 <Card.Title>
