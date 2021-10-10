@@ -38,6 +38,7 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
         }
     }, [])
     
+    
     const setMilestone = (milestone: Milestone) => {
         const new_milestones = milestones.slice();
 
@@ -50,7 +51,7 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
         }
         new_milestones[j] = milestone;
         setMilestones(new_milestones);
-        props.editMilestoneList(milestones)
+        props.editMilestoneList(new_milestones)
     }
 
     const deleteMilestone = (milestone: Milestone) => {
@@ -66,7 +67,7 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
         }
 
         setMilestones(new_milestones);
-        props.editMilestoneList(milestones)
+        props.editMilestoneList(new_milestones)
     }
 
     const handleKeyPress = (target: any) => {
@@ -84,7 +85,7 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
             return;
         }
         const newMilestone: Milestone = {
-            id: new Date().getTime() + "asd",
+            id: new Date().getTime() + "FDS",
             state: false,
             name: nameRef.current.value,
         }
@@ -93,13 +94,13 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
         new_milestones.push(newMilestone);
         setMilestones(new_milestones);
         setModalShow(false);
-        props.editMilestoneList(milestones)
+        props.editMilestoneList(new_milestones)
     }
 
 
     let milestoneList = 
         <div>{milestones.map((milestone, ind) => 
-           <MilestoneItem milestone={milestone} setMilestone={setMilestone} deleteMilestone={deleteMilestone} />)}</div>;
+           <MilestoneItem milestone={milestone} key={milestone.id} setMilestone={setMilestone} deleteMilestone={deleteMilestone} />)}</div>;
 
     return (
         <div>

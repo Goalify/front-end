@@ -4,11 +4,32 @@ import {goal1, goal2, goal3} from "../../testcases/samples"
 import GoalItem from './Goal';
 import { Card, Button, Collapse, Modal, Form } from 'react-bootstrap';
 import './GoalsList.css';
+import GoalStats from './statistics/GoalStats';
+import { useAuth } from 'hooks/useAuth';
 function GoalsList() {
 
-    const [goals, setGoals] = React.useState<Goals>({ list: [goal1, goal2, goal3] });
+    const [goals, setGoals] = React.useState<Goals>({list: []});
     const [visibileGoalForm, setVisibleGoalForm] = React.useState<boolean>(false);
     const [modalShow, setModalShow] = React.useState<boolean>(false);
+    const auth = useAuth();
+
+
+    React.useEffect(() => {
+        if (!auth)
+            return;
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        fetch(`http://localhost:4001/goals?token=${auth?.token}&username=${auth?.username}`, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                setGoals(data);
+            }).catch(e => console.log(e));
+    }, [auth])
 
     const setGoal = (goal: Goal) => {
         const new_goals = goals.list.slice();
@@ -47,16 +68,12 @@ function GoalsList() {
         setVisibleGoalForm(x => !x);
     }
 
-    let goalslist = <ul>
-        {goals.list.map((goal, ind) =>
-            <li key={goal.id}><GoalItem goal={goal} setGoal={setGoal} deleteGoal={deleteGoal} /></li>)}
-    </ul>;
-    
     return <div style={{marginLeft: '20%', marginRight:'20%' }}>
         {goals.list.map((goal) =>
-            <GoalItem
+            <div key={goal.id}><GoalItem
                 goal={goal} setGoal={setGoal} deleteGoal={deleteGoal} 
-            />)}
+            /><GoalStats goal={goal} />
+            </div>)}
         <Card className="text-center" onClick={() => setModalShow(true)}>
             <Card.Body >
                 <Card.Title>

@@ -117,9 +117,8 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
                             </select>
                             <button type="button" className="btn-close" aria-label="Close" onClick={() => {props.deleteGoal(goal)}}></button>
                         </div>
-                        <Card.Text>
+                        
                             <DbClickField text={goal.description} setText={edit_description}></DbClickField>
-                        </Card.Text>
                         <MilestonesList milestonesList = {goal.milestones} editMilestoneList = {edit_milestones}></MilestonesList>
                     </div>
                 </Collapse>

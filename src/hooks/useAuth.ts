@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 
 type Auth = {
-    token: string;
+    token: string,
+    username: string
 }
 
 export function useAuth() {
@@ -11,9 +12,11 @@ export function useAuth() {
 
     useEffect(() => {
         const token = get_cookie('token');
-        if(token){
+        const username = get_cookie('username');
+        if(token && username){
             setAuth({
-                token: token
+                token: token,
+                username: username
             })
         }
         return () => {

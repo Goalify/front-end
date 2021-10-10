@@ -10,7 +10,6 @@ function Dashboard(){
   return <div> 
         <HeaderNavBar />
           <GoalsList />
-          {/* <GoalStats goal={goal1}/> */}
         <Footer />
       </div>
 }
