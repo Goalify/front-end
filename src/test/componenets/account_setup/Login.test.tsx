@@ -43,7 +43,6 @@ describe('Login', () => {
 
         submit.simulate('click');
         
-        console.log(store.getActions());
         expect(store.getState().user).toBe({
             id: "someid",
             username: "test-username",
@@ -51,6 +50,5 @@ describe('Login', () => {
             encPassword: "test-encrypted-password",
             token: "test-token"
         })
-        console.log(store.getState());
     })
 })

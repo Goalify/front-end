@@ -9,6 +9,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { Form, Button } from 'react-bootstrap';
 import './Login.css';
 import logo from '../../Goalify-logos.jpeg';
+import Cookies from "universal-cookie/es6";
 const Login: React.FC = () => {
     
     const usernameRef = useRef<HTMLInputElement>(null);
@@ -40,6 +41,7 @@ const Login: React.FC = () => {
             .then(response => response.json())
             .then(data => {
                 document.cookie = `token=${data.token};Secure`;
+                document.cookie = `username=${data.username};Secure`;
                 dispatch({
                     type: actions.ADD_USER,
                     user: {

@@ -38,7 +38,7 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
         }
     }, [])
     
-
+    
     const setMilestone = (milestone: Milestone) => {
         const new_milestones = milestones.slice();
 
@@ -100,7 +100,7 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
 
     let milestoneList = 
         <div>{milestones.map((milestone, ind) => 
-           <MilestoneItem milestone={milestone} setMilestone={setMilestone} deleteMilestone={deleteMilestone} />)}</div>;
+           <MilestoneItem milestone={milestone} key={milestone.id} setMilestone={setMilestone} deleteMilestone={deleteMilestone} />)}</div>;
 
     return (
         <div>
