@@ -133,7 +133,7 @@ Schema Diagram:
 
 Sequence Diagram:
 
-![alt text](https://github.com/Goalify/front-end/blob/main/untitled.png?raw=true)
+![alt text](https://github.com/Goalify/front-end/blob/main/Untitled.png?raw=true)
 
 <a name="auth"></a>
 ## 10. Authors
