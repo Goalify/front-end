@@ -1,11 +1,11 @@
 # Goalify  <img  align="right" src="https://github.com/Goalify/front-end/blob/main/src/Goalify-logos.jpeg" width="250" height="250" />
 ## Table of Contents
-1. [ Introdution. ](#intro)
+1. [ Introdution ](#intro)
 2. [ Business Goals and Objectives ](#business)
 3. [ Requirements ](#req)
 4. [ Project Glossary ](#glossary)
 5. [ Technical Stack ](#techstack)
-6. [ Stakeholders Roles. ](#stake)
+6. [ Stakeholders Roles ](#stake)
 7. [ User Stories ](#stories)
 8. [ Design Documentation ](#design)
 9. [ Architecture And Diagrams ](#arc)
