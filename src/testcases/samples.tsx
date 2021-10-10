@@ -12,44 +12,64 @@ import {Goal, Goals} from '../tsInterfaces/interfaces'
 
 export const goal1: Goal = {
     id: "1",
-    state: "in progress",
-    name: "Lose Weight",
+    state: "InProgress",
+    name: "Presentation",
     description: "this is the description",
-    milestones: [],
+    milestones: [{id: "1", state: true, name: "milestone1"}, {id: "2", state: false, name: "milestone2"},
+    {id: "3", state: false, name: "milestone3"}],
     published: true,
     deadline: "12/Sep",
-    dateCreated: "10/Sep",
+    dateCreated: "Now",
+    dateFinished: "fdas"
 }
 
 export const goal2: Goal = {
     id: "2",
-    state: "completed",
-    name: "kick dwik's ass",
-    description: "easy goal",
+    state: "Done",
+    name: "Finish SSAD project",
+    description: "description here",
     milestones: [],
     published: false,
     deadline: "24/Sep",
-    dateCreated: "22/Sep",
+    dateCreated: "4 Days ago",
+    dateFinished: "fdsa"
 }
 
 export const goal3: Goal = {
     id: "3",
-    state: "idle",
-    name: "play the piano",
-    description: "learn bella ciao song",
+    state: "ToDo",
+    name: "Lose weight",
+    description: "description here",
     milestones: [],
     published: false,
-    deadline: "14/Oct",
-    dateCreated: "10/Oct",
+    deadline: "24/Sep",
+    dateCreated: "A week ago",
+    dateFinished: "fdsa"
+
 }
 
-export const goal4: Goal = {
-    id: "4",
-    state: "idle",
-    name: "play the piano",
-    description: "learn bella ciao song",
-    milestones: [],
-    published: true,
-    deadline: "11/Nov",
-    dateCreated: "10/Oct",
-}
+// export const goal3: Goal = {
+//     id: "3",
+//     state: "idle",
+//     name: "play the piano",
+//     description: "learn bella ciao song",
+//     milestones: {list: [{id: "1", state: true, description: "description", dateFinished: "fds", dateCreated: 'ww'},
+//     {id: "1", state: false, description: "description", dateFinished: "fds", dateCreated: 'ww'}]},
+//     published: false,
+//     deadline: "14/Oct",
+//     dateFinished: "",
+//     dateCreated: "10/Oct",
+// }
+
+// export const goal4: Goal = {
+//     id: "4",
+//     state: "idle",
+//     name: "play the piano",
+//     description: "learn bella ciao song",
+//     milestones: {list: [{id: "1", state: true, description: "description", dateFinished: "fds", dateCreated: 'ww'},
+//     {id: "1", state: false, description: "description", dateFinished: "fds", dateCreated: 'ww'}]},
+//     published: true,
+//     deadline: "11/Nov",
+//     dateFinished: "",
+//     dateCreated: "10/Oct",
+// }

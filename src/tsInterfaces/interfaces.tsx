@@ -16,6 +16,7 @@ export interface Goal {
     milestones: Milestone[],
     published: boolean,
     deadline: string,
+    dateFinished: string | null,
     dateCreated: string;
 };
 

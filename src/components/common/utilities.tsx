@@ -20,3 +20,17 @@ export function getUserId(): string{
 export function logOut(){
     localStorage.setItem('access_token', 'false');
 }
+
+export function getCurrentDateFormat(){
+    const nlBEFormatter = new Intl.DateTimeFormat('nl-BE');
+
+    let today = new Date();
+
+    const tranformFormat = (time: string) => {
+        const hours = time.length == 2 ? time : "0" + time;
+        return hours;
+    }
+
+    let dateCreated = nlBEFormatter.format(today) + " " + tranformFormat(today.getHours().toString()) + ":" + tranformFormat(today.getMinutes().toString());
+    return dateCreated;
+}

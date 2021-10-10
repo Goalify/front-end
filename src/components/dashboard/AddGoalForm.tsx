@@ -2,6 +2,7 @@ import React, {FormEvent, useState, useRef, useEffect, useContext} from 'react'
 import { Goal } from '../../tsInterfaces/interfaces'
 import { getUserId } from '../common/utilities';
 
+
 const AddGoalForm = (props: {addGoal: (goal: Goal) => void}) => {
 
     const [name, setName] = useState<string>("");
@@ -12,10 +13,9 @@ const AddGoalForm = (props: {addGoal: (goal: Goal) => void}) => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         
-        const nlBEFormatter = new Intl.DateTimeFormat('nl-BE');
-        
-        let today = new Date();
-        let dateCreated = nlBEFormatter.format(today);
+        let today = new Date("Wed, 27 July 2016 07:45:00 UTC+3");
+
+        let dateCreated = today.toLocaleString();
 
         let goal: Goal = {
             id: getUserId(),
@@ -25,6 +25,7 @@ const AddGoalForm = (props: {addGoal: (goal: Goal) => void}) => {
             dateCreated: dateCreated,
             state: "idle",
             published: false,
+            dateFinished: "",
             milestones: [],
         }
         props.addGoal(goal);
