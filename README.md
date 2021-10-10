@@ -8,7 +8,8 @@
 6. [ Stakeholders Roles. ](#stake)
 7. [ User Stories ](#stories)
 8. [ Design Documentation ](#design)
-9. [ Authors ](#auth)
+9. [ Architecture And Diagrams ](#arc)
+10. [ Authors ](#auth)
 
 <a name="intro"></a>
 ## 1. Introdution
@@ -16,7 +17,13 @@ Goalify is a web application used by users to set their goals, track their progr
 
 <a name="business"></a>
 ## 2. Business Goals and Objectives
-The problem: the lack of motivation to get up and pursue whatever any of us is trying to achieve has been a problem for almost everyone. Solution: Create an application to assist people put forward objectives and keep tabs on their development towards those objectives. It gives an organized method to follow and track objective advancement through highlights like dashboards and progress bars. Additionally, the platform is a magnificent apparatus for inspiration. The app allows  uses to stay focused on the most critical aspects of their goals. It aids in the identification of potential roadblocks as well as ideas for overcoming them. It can assist in setting more realistic goals and maintaining a happy attitude along the way. Most importantly, uses can share that with other users who would also be posting their progress creating some kind of a motivational feedback loop. Competition: There are many apps out there made for the purpose of tracking goals but they all lack in the social side. 
+The problem: the lack of motivation to get up and pursue whatever any of us is trying to achieve has been a problem for almost everyone. 
+
+Solution: Create an application to assist people put forward objectives and keep tabs on their development towards those objectives. It gives an organized method to follow and track objective advancement through highlights like dashboards and progress bars. Additionally, the platform is a magnificent apparatus for inspiration. 
+
+The app allows users to stay focused on the most critical aspects of their goals. It aids in the identification of potential roadblocks as well as ideas for overcoming them. It can assist in setting more realistic goals and maintaining a happy attitude along the way. Most importantly, uses can share that with other users who would also be posting their progress creating some kind of a motivational feedback loop. 
+
+Competition: There are many apps out there made for the purpose of tracking goals but they all lack in the social side. 
 
 <a name="req"></a>
 ## 3. Requirements
@@ -91,13 +98,38 @@ User authentication will be done by user-proxy which communicates with its own M
 
 Here’s a sample diagram of the flow of a test post request to the endpoint/test:
 
-![picture alt](http://via.placeholder.com/200x150 "Title is optional")
+![alt text](https://github.com/Goalify/front-end/blob/main/design.png?raw=true)
 
 After all of the user authentications are handled by the middleware, the valid requests are sent to the core server. 
 
 We have decided to use Flask as the main framework for the core server because of its flexibility and the compatibility it embraces with the latest technologies. Moreover, it is easy and highly scalable on simple projects. Principles such as KISS and SOLID were followed during the development to make the process of debugging and adding new features simpler and more efficient. The core server is connected to a MySQL database, which stores all data except for the users’ credentials. MySQL was selected as it is secure, flexible, and easy to set up. 
 
 
+<a name="arc"></a>
+## 9. Architecture And Diagrams
+
+Architecture:
+
+![alt text](https://github.com/Goalify/front-end/blob/main/arc.png?raw=true)
+
+
+Front-End Class Diagram:
+
+![alt text](https://github.com/Goalify/front-end/blob/main/classdiagramfrontend.png?raw=true)
+
+
+Use Case Diagram:
+
+![alt text](https://github.com/Goalify/front-end/blob/main/usecasediagram.png?raw=true)
+
+
+Schema Diagram:
+
+![alt text](https://github.com/Goalify/front-end/blob/main/schemadiagram.png?raw=true)
+
+
+
+
 <a name="auth"></a>
-## 9. Authors
+## 10. Authors
 This project was created and is maintained by: Hasan Khadra, Mahmood Darwish, Mohamad Dwik, Mohammad Shahin.
