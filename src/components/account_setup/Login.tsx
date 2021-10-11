@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef, FormEvent, useContext, MouseEventHandler} from "react";
+import {useEffect, useRef} from "react";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import React from 'react';
@@ -9,7 +9,6 @@ import { useAuth } from "../../hooks/useAuth";
 import { Form, Button } from 'react-bootstrap';
 import './Login.css';
 import logo from '../../Goalify-logos.jpeg';
-import Cookies from "universal-cookie/es6";
 const Login: React.FC = () => {
     
     const usernameRef = useRef<HTMLInputElement>(null);
@@ -59,7 +58,7 @@ const Login: React.FC = () => {
     }
     return <div>
             <div className='login-form'>
-                <img src={logo}/>
+                <img alt="logo" src={logo}/>
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Username</Form.Label>

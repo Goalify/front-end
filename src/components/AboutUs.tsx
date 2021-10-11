@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { authenticate } from './common/utilities';
 
 function AboutUs(){
 

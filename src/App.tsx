@@ -6,7 +6,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Login from './components/account_setup/Login';
 import Register from './components/account_setup/Register';
 import HeaderNavBar from './components/HeaderNavBar';
-import { authenticate } from './components/common/utilities';
 import { useSelector } from 'react-redux';
 import { useAuth } from './hooks/useAuth';
 

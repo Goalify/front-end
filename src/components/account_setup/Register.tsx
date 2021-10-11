@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Form, Button } from 'react-bootstrap';
 import './Login.css';
 import logo from '../../Goalify-logos.jpeg';
@@ -42,7 +42,7 @@ const Register = () => {
 
     return <div>
                 <div className='login-form'>
-                    <img src={logo}/>
+                    <img src={logo} alt="logo"/>
                     <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email</Form.Label>

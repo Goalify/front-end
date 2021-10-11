@@ -4,7 +4,8 @@ import { useContext } from 'react';
 export interface Milestone{
     id: string,
     state: boolean,
-    name: string
+    name: string,
+    goal_id: string
 }
 
 export interface Goal {
