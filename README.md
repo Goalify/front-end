@@ -10,7 +10,8 @@
 8. [ Design Documentation ](#design)
 9. [ Architecture And Diagrams ](#arc)
 10. [ Run the App ](#run-app)
-11. [ Authors ](#auth)
+11. [ Demo ](#demo)
+12. [ Authors ](#auth)
 
 <a name="intro"></a>
 ## 1. Introdution
@@ -148,9 +149,8 @@ Sequence Diagram:
 ![alt text](https://github.com/Goalify/front-end/blob/main/Untitled.png?raw=true)
 
 <a name="run-app"></a>
-## 11. Run the App
-### Frontend
-### Middleware
+## 10. Run the App
+To run the app without any errors, you need to first run the `Core-server`, then the `Middleware`, and finally the `front-end`.
 ### Core-server
 This parts explains how to run the core server on Ubuntu 20.04 or higher and python 3.8 or higher.
 #### Database
@@ -201,7 +201,26 @@ Now you can run the core server using the command in the project directory:
   python app.py
   ```
 This will make the app run on the localhost (127.0.0.1) and the port 3001. If you would like to change that, you can modify `app.py` file and change the values of `IP` and `PORT`.
+### Middleware
+
+### Frontend
+1. You need to install `npm`:
+```
+sudo apt install npm
+```
+2. You need to `cd` to the directory of the `front-end` repo and run:
+```
+npm install
+```
+3. Now, to run the app use the following command:
+```
+npm start
+```
+
+<a name="demo"></a>
+## 11. Demo
+[Here](https://youtu.be/ixyBmpZGab0) you can find a link to a video-demo of goalify with some explanations on how the platform works.
 
 <a name="auth"></a>
-## 10. Authors
+## 12. Authors
 This project was created and is maintained by: Hasan Khadra, Mahmood Darwish, Mohamad Dwik, Mohammad Shahin.
