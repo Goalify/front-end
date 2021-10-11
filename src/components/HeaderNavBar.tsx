@@ -22,7 +22,6 @@ const HeaderNavBar = () => {
       <Nav className="m-auto">
             <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
             <Nav.Link as={Link} to="/discover">Discover</Nav.Link>
-            <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
             <Nav.Link href="#" onClick={logout}>Log out</Nav.Link>
          </Nav>
       </Navbar>)
