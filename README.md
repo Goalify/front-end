@@ -150,8 +150,7 @@ Sequence Diagram:
 
 <a name="run-app"></a>
 ## 10. Run the App
-### Frontend
-### Middleware
+To run the app without any errors, you need to first run the `Core-server`, then the `Middleware`, and finally the `front-end`.
 ### Core-server
 This parts explains how to run the core server on Ubuntu 20.04 or higher and python 3.8 or higher.
 #### Database
@@ -202,6 +201,21 @@ Now you can run the core server using the command in the project directory:
   python app.py
   ```
 This will make the app run on the localhost (127.0.0.1) and the port 3001. If you would like to change that, you can modify `app.py` file and change the values of `IP` and `PORT`.
+### Middleware
+
+### Frontend
+1. You need to install `npm`:
+```
+sudo apt install npm
+```
+2. You need to `cd` to the directory of the `front-end` repo and run:
+```
+npm install
+```
+3. Now, to run the app use the following command:
+```
+npm start
+```
 
 <a name="demo"></a>
 ## 11. Demo
