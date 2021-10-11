@@ -167,7 +167,7 @@ As prevoiusly mentioned, the core server uses MySQL as its main database. So you
   
 3. Then you need to access the MySQL shell as the root user using the following command:
   ```
-  $ sudo apt install mysql-server
+  $ sudo mysql
   ```
   NOTE: If you already had installed MySQL and enabled password authentication for root, you will need to use a different command to access the MySQL shell. The command to use in that case:
   ```
@@ -198,7 +198,7 @@ All of the dependencies and necessary modules used are listed in the file `requi
   ```
 Now you can run the core server using the command in the project directory:
   ```
-  python run app.py
+  python app.py
   ```
 This will make the app run on the localhost (127.0.0.1) and the port 3001. If you would like to change that, you can modify `app.py` file and change the values of `IP` and `PORT`.
 
