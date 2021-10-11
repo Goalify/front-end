@@ -147,7 +147,7 @@ Sequence Diagram:
 
 ![alt text](https://github.com/Goalify/front-end/blob/main/Untitled.png?raw=true)
 
-<a name="auth"></a>
+<a name="run-app"></a>
 ## 11. Run the App
 ### Frontend
 ### Middleware
