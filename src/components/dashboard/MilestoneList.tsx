@@ -64,7 +64,7 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
             })
         }
 
-        fetch('http://localhost:4001/edit_milstone', requestOptions)
+        fetch('http://localhost:4001/edit-milestone', requestOptions)
             .then(response => {
                 setMilestones(new_milestones);
                 props.editMilestoneList(new_milestones);
