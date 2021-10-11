@@ -202,6 +202,21 @@ Now you can run the core server using the command in the project directory:
   ```
 This will make the app run on the localhost (127.0.0.1) and the port 3001. If you would like to change that, you can modify `app.py` file and change the values of `IP` and `PORT`.
 ### Middleware
+1. You need to install `npm`:
+```
+sudo apt install npm
+```
+2. You need to `cd` to the directory of the `user-proxy` and install node modules
+
+  ```bash
+    $ npm install
+  ```
+
+3. Run the development server
+
+  ```bash
+    $ npm run dev
+  ```
 
 ### Frontend
 1. You need to install `npm`:
