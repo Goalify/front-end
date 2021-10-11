@@ -3,6 +3,7 @@ import {Milestone} from "../../tsInterfaces/interfaces";
 import {DbClickField} from "./Goal"
 import {Modal, Button, Form} from 'react-bootstrap';
 import { useAuth } from "hooks/useAuth";
+import {stringify} from "querystring";
 
 function MilestoneItem(props: {milestone: Milestone, setMilestone: any, deleteMilestone: any}){
 
@@ -27,7 +28,7 @@ function MilestoneItem(props: {milestone: Milestone, setMilestone: any, deleteMi
     );
 }
 
-export function MilestonesList(props: {milestonesList: Milestone[], editMilestoneList: any}){
+export function MilestonesList(props: {goal_id: string, milestonesList: Milestone[], editMilestoneList: any}){
 
     const [milestones, setMilestones] = React.useState<Milestone[]>(props.milestonesList);
     const [modalShow, setModalShow] = React.useState<boolean>(false);
@@ -38,7 +39,7 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
             nameRef.current.focus()
         }
     }, [])
-    
+
     
     const setMilestone = (milestone: Milestone) => {
         const new_milestones = milestones.slice();
@@ -52,14 +53,17 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
         }
         new_milestones[j] = milestone;
 
-
+        let sent_milestone= {
+            ...milestone,
+            state: milestone.state.toString()
+        }
         const requestOptions = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                milestone,
+                milestone: sent_milestone,
                 token: auth?.token
             })
         }
@@ -126,7 +130,8 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
             body: JSON.stringify({
                 milestone:{
                     name: nameRef.current.value,
-                    state: false,
+                    goal_id: props.goal_id,
+                    state: 'false',
                 },
                 token: auth?.token
             })
@@ -137,7 +142,7 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
             .then(data => {
                 if (!nameRef || !nameRef.current) return;
                 let new_milestone: Milestone = {
-                    id: data.id,
+                    id: data.id.toString(),
                     name: nameRef.current.value,
                     state: false,
                     goal_id: data.goal_id

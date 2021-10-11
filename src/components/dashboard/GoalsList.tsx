@@ -25,12 +25,14 @@ function GoalsList() {
         fetch(`http://localhost:4001/get-goals?token=${auth?.token}`, requestOptions)
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 setGoals(data);
             }).catch(e => console.log(e));
     }, [auth])
 
     const setGoal = (goal: Goal) => {
         const new_goals = goals.list.slice();
+
 
         let j = 0;
         for (let i = 0; i < new_goals.length; i++) {
@@ -39,15 +41,45 @@ function GoalsList() {
                 break;
             }
         }
-        new_goals[j] = goal;
 
+
+        let count = 0;
+        for (let i = 0; i < goal.milestones.length; i++) {
+            if (goal.milestones[i].state) {
+                count += 1;
+            }
+        }
+
+        let new_goal = goal;
+        if(count === new_goal.milestones.length && count !== 0) {
+            let today = new Date();
+
+            const nlBEFormatter = new Intl.DateTimeFormat('nl-BE');
+            let dateFinished = nlBEFormatter.format(today);
+
+            new_goal = {
+                ...goal,
+                dateFinished: dateFinished
+            }
+        }
+
+        new_goals[j] = new_goal;
+
+        let val = new_goal.dateFinished === null ? 'null' : new_goal.dateFinished.toString()
+
+        let sent_goal: any = {
+            ...new_goal,
+            published: new_goal.published.toString(),
+            milestones: new_goal.milestones.toString(),
+            dateFinished: val
+        }
         const requestOptions = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                goal,
+                goal: sent_goal,
                 token: auth?.token
             })
         }
@@ -131,7 +163,7 @@ const AddGoalModal = ({addGoal, show, handleClose} : any) => {
         const nlBEFormatter = new Intl.DateTimeFormat('nl-BE');
         let dateCreated = nlBEFormatter.format(today);
 
-
+        console.log("Reererer")
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -139,16 +171,16 @@ const AddGoalModal = ({addGoal, show, handleClose} : any) => {
             },
             body: JSON.stringify({
                 goal:{
-                    title: nameRef.current.value,
+                    name: nameRef.current.value,
                     description: descriptionRef.current.value,
                     deadline: "None",
-                    created_on: dateCreated,
-                    complete_status: "Idle",
-                    publish_status: false,
-                    milestones: [],
-                    dateFinished: "",
-                    token: auth?.token
-                }
+                    dateCreated: dateCreated,
+                    state: "Idle",
+                    published: 'false',
+                    milestones: '[]',
+                    dateFinished: 'null'
+                },
+                token: auth?.token
             })
         }
 
@@ -157,7 +189,7 @@ const AddGoalModal = ({addGoal, show, handleClose} : any) => {
             .then(data => {
                 if (!nameRef || !nameRef.current || !descriptionRef || !descriptionRef.current) return;
                 let new_goal: Goal = {
-                    id: data.id,
+                    id: data.id.toString(),
                     name: nameRef.current.value,
                     description: descriptionRef.current.value,
                     deadline: "None",

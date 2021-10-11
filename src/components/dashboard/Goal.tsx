@@ -115,7 +115,7 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
                             <DbClickField text={goal.description} setText={edit_description}></DbClickField>
                             <div>Deadline: <DbClickField text={goal.deadline} setText={edit_deadline}></DbClickField></div>
 
-                        <MilestonesList milestonesList = {goal.milestones} editMilestoneList = {edit_milestones}></MilestonesList>
+                        <MilestonesList goal_id={goal.id} milestonesList = {goal.milestones} editMilestoneList = {edit_milestones}></MilestonesList>
                     </div>
                 </Collapse>
             </Card.Body>
