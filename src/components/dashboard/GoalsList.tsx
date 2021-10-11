@@ -22,7 +22,7 @@ function GoalsList() {
             }
         }
 
-        fetch(`http://localhost:4001/goals?token=${auth?.token}&username=${auth?.username}`, requestOptions)
+        fetch(`http://localhost:4001/get-goals?token=${auth?.token}`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 setGoals(data);
