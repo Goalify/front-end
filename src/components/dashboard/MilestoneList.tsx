@@ -2,6 +2,7 @@ import React, {useEffect, ChangeEvent} from "react";
 import {Milestone} from "../../tsInterfaces/interfaces";
 import {DbClickField} from "./Goal"
 import {Modal, Button, Form} from 'react-bootstrap';
+import { useAuth } from "hooks/useAuth";
 
 function MilestoneItem(props: {milestone: Milestone, setMilestone: any, deleteMilestone: any}){
 
@@ -30,8 +31,8 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
 
     const [milestones, setMilestones] = React.useState<Milestone[]>(props.milestonesList);
     const [modalShow, setModalShow] = React.useState<boolean>(false);
-    const nameRef = React.useRef<HTMLInputElement>(null);
-    
+    const nameRef = React.useRef<HTMLInputElement | null>(null);
+    const auth = useAuth();
     useEffect(() => {
         if(nameRef && nameRef.current){
             nameRef.current.focus()
@@ -50,8 +51,25 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
             }
         }
         new_milestones[j] = milestone;
-        setMilestones(new_milestones);
-        props.editMilestoneList(new_milestones)
+
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                milestone,
+                token: auth?.token
+            })
+        }
+
+        fetch('http://localhost:4001/edit-milestone', requestOptions)
+            .then(response => {
+                setMilestones(new_milestones);
+                props.editMilestoneList(new_milestones);
+            }).catch(e => console.log(e));
+
     }
 
     const deleteMilestone = (milestone: Milestone) => {
@@ -66,9 +84,24 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
             new_milestones.push(old_milestones[i]);
         }
 
-        setMilestones(new_milestones);
-        props.editMilestoneList(new_milestones)
-    }
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: milestone.id,
+                token: auth?.token
+            })
+        }
+
+        fetch('http://localhost:4001/remove-milestone', requestOptions)
+            .then(response => {
+                setMilestones(new_milestones);
+                props.editMilestoneList(new_milestones);
+            }).catch(e => console.log(e));
+        }
+
 
     const handleKeyPress = (target: any) => {
         if(target.charCode === 13){
@@ -94,11 +127,12 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
                 milestone:{
                     name: nameRef.current.value,
                     state: false,
-                }
+                },
+                token: auth?.token
             })
         }
 
-        fetch('http://localhost:4001/add_milestone', requestOptions)
+        fetch('http://localhost:4001/add-milestone', requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (!nameRef || !nameRef.current) return;
