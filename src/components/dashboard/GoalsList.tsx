@@ -22,7 +22,7 @@ function GoalsList() {
             }
         }
 
-        fetch(`http://localhost:4001/goals?token=${auth?.token}&username=${auth?.username}`, requestOptions)
+        fetch(`http://localhost:4001/get-goals?token=${auth?.token}`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 setGoals(data);
@@ -52,7 +52,7 @@ function GoalsList() {
             })
         }
 
-        fetch('http://localhost:4001/edit_goal', requestOptions)
+        fetch('http://localhost:4001/edit-goal', requestOptions)
             .then(response => {
                 setGoals({ list: new_goals });
             }).catch(e => console.log(e));
@@ -84,11 +84,11 @@ function GoalsList() {
             })
         }
 
-        fetch('http://localhost:4001/delete_goal', requestOptions)
+        fetch('http://localhost:4001/remove-goal', requestOptions)
             .then(response => {
                 setGoals(new_goals);
             }).catch(e => console.log(e));
-    }
+        }
 
     const addGoal = (goal: Goal) => {
         const new_goals = goals.list.slice();
@@ -152,7 +152,7 @@ const AddGoalModal = ({addGoal, show, handleClose} : any) => {
             })
         }
 
-        fetch('http://localhost:4001/add_goal', requestOptions)
+        fetch('http://localhost:4001/add-goal', requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (!nameRef || !nameRef.current || !descriptionRef || !descriptionRef.current) return;
