@@ -216,7 +216,7 @@ npm install
 ```
 npm start
 ```
-
+ 
 <a name="demo"></a>
 ## 11. Demo
 [Here](https://youtu.be/ixyBmpZGab0) you can find a link to a video-demo of goalify with some explanations on how the platform works.
