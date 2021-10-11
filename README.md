@@ -9,7 +9,8 @@
 7. [ User Stories ](#stories)
 8. [ Design Documentation ](#design)
 9. [ Architecture And Diagrams ](#arc)
-10. [ Authors ](#auth)
+10. [ Run the App ](#run-app)
+11. [ Authors ](#auth)
 
 <a name="intro"></a>
 ## 1. Introdution
@@ -145,6 +146,61 @@ Schema Diagram:
 Sequence Diagram:
 
 ![alt text](https://github.com/Goalify/front-end/blob/main/Untitled.png?raw=true)
+
+<a name="auth"></a>
+## 11. Run the App
+### Frontend
+### Middleware
+### Core-server
+This parts explains how to run the core server on Ubuntu 20.04 or higher and python 3.8 or higher.
+#### Database
+As prevoiusly mentioned, the core server uses MySQL as its main database. So you need to install MySQL using the following steps.
+1. You need to update the package index on your server if you’ve not done so recently using the command below.
+  ```
+  $ sudo apt update
+  ```
+  
+2. Install the mysql-server package:
+  ```
+  $ sudo apt install mysql-server
+  ```
+  
+3. Then you need to access the MySQL shell as the root user using the following command:
+  ```
+  $ sudo apt install mysql-server
+  ```
+  NOTE: If you already had installed MySQL and enabled password authentication for root, you will need to use a different command to access the MySQL shell. The command to use in that case:
+  ```
+  $ mysql -u root -p
+  ```
+  This will enable you to access the MySQL shell after entering the password you set.
+
+4. Now you need to create a database called 'goalify'. Type this command in the MySQL shell. 
+  ```
+  > CREATE DATABASE goalify;
+  ```
+  
+5. Create a user for this database to be used by the core server using the following command:
+  ```
+  > CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+  ```
+  NOTE: keep `newuser` and `password` as they are. Otherwise you will need to change the user and the password in `db.yaml` file.
+  
+6. Finally granting the new user a full access to the newly created database 'goalify'.
+  ```
+  > GRANT ALL PRIVILEGES ON goalify.* TO 'newuser'@'localhost';
+  ```
+  
+#### Python
+All of the dependencies and necessary modules used are listed in the file `requirements.txt` you need to run the following command in the terminal in the project directory:
+  ```
+  pip install -r requirements.txt
+  ```
+Now you can run the core server using the command in the project directory:
+  ```
+  python run app.py
+  ```
+This will make the app run on the localhost (127.0.0.1) and the port 3001. If you would like to change that, you can modify `app.py` file and change the values of `IP` and `PORT`.
 
 <a name="auth"></a>
 ## 10. Authors
