@@ -1,15 +1,13 @@
 import * as React from 'react'
 import {Goals, Goal} from '../../tsInterfaces/interfaces'
-import {goal1, goal2, goal3} from "../../testcases/samples"
 import GoalItem from './Goal';
-import { Card, Button, Collapse, Modal, Form } from 'react-bootstrap';
+import { Card, Button, Modal, Form } from 'react-bootstrap';
 import './GoalsList.css';
 import GoalStats from './statistics/GoalStats';
 import { useAuth } from 'hooks/useAuth';
 function GoalsList() {
 
     const [goals, setGoals] = React.useState<Goals>({list: []});
-    const [visibileGoalForm, setVisibleGoalForm] = React.useState<boolean>(false);
     const [modalShow, setModalShow] = React.useState<boolean>(false);
     const auth = useAuth();
 
@@ -42,6 +40,23 @@ function GoalsList() {
             }
         }
         new_goals[j] = goal;
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                goal,
+                token: auth?.token
+            })
+        }
+
+        fetch('http://localhost:4001/edit_goal', requestOptions)
+            .then(response => {
+                setGoals({ list: new_goals });
+            }).catch(e => console.log(e));
+
         setGoals({ list: new_goals });
         
     }
@@ -57,15 +72,28 @@ function GoalsList() {
             }
             new_goals.list.push(old_goals[i]);
         }
+        
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: goal.id,
+                token: auth?.token
+            })
+        }
 
-        setGoals(new_goals);
+        fetch('http://localhost:4001/delete_goal', requestOptions)
+            .then(response => {
+                setGoals(new_goals);
+            }).catch(e => console.log(e));
     }
 
     const addGoal = (goal: Goal) => {
         const new_goals = goals.list.slice();
         new_goals.push(goal);
         setGoals({ list: new_goals });
-        setVisibleGoalForm(x => !x);
     }
 
     return <div style={{marginLeft: '20%', marginRight:'20%' }}>
@@ -89,6 +117,7 @@ function GoalsList() {
 const AddGoalModal = ({addGoal, show, handleClose} : any) => { 
     const nameRef = React.useRef<HTMLInputElement>(null);
     const descriptionRef = React.useRef<HTMLInputElement>(null);
+    const auth = useAuth();
     
     const handleAdd = () => {
         if (!nameRef || !nameRef.current || !descriptionRef || !descriptionRef.current) return;
@@ -102,18 +131,46 @@ const AddGoalModal = ({addGoal, show, handleClose} : any) => {
         const nlBEFormatter = new Intl.DateTimeFormat('nl-BE');
         let dateCreated = nlBEFormatter.format(today);
 
-        let goal: Goal = {
-            id: 'id',
-            name: nameRef.current.value,
-            description: descriptionRef.current.value,
-            deadline: "something",
-            dateCreated: dateCreated,
-            state: "ToDo",
-            published: false,
-            milestones: [],
-            dateFinished: null,
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                goal:{
+                    title: nameRef.current.value,
+                    description: descriptionRef.current.value,
+                    deadline: "None",
+                    created_on: dateCreated,
+                    complete_status: "Idle",
+                    publish_status: false,
+                    milestones: [],
+                    dateFinished: "",
+                    token: auth?.token
+                }
+            })
         }
-        addGoal(goal);
+
+        fetch('http://localhost:4001/add_goal', requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                if (!nameRef || !nameRef.current || !descriptionRef || !descriptionRef.current) return;
+                let new_goal: Goal = {
+                    id: data.id,
+                    name: nameRef.current.value,
+                    description: descriptionRef.current.value,
+                    deadline: "None",
+                    dateCreated: dateCreated,
+                    state: "Idle",
+                    published: false,
+                    milestones: [],
+                    dateFinished: null,
+                }
+                addGoal(new_goal);
+            });
+        
+
         handleClose();
     }
 

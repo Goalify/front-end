@@ -1,7 +1,7 @@
-import React, {useState, useRef, FormEvent, useEffect, ChangeEventHandler, ChangeEvent} from "react";
-import {Goal, Milestone} from "../../tsInterfaces/interfaces";
+import React, {useEffect, ChangeEvent} from "react";
+import {Milestone} from "../../tsInterfaces/interfaces";
 import {DbClickField} from "./Goal"
-import {Modal, Button, Form, Card} from 'react-bootstrap';
+import {Modal, Button, Form} from 'react-bootstrap';
 
 function MilestoneItem(props: {milestone: Milestone, setMilestone: any, deleteMilestone: any}){
 
@@ -71,7 +71,7 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
     }
 
     const handleKeyPress = (target: any) => {
-        if(target.charCode==13){
+        if(target.charCode === 13){
             target.preventDefault();
             addMilestone();
         } 
@@ -84,17 +84,37 @@ export function MilestonesList(props: {milestonesList: Milestone[], editMileston
             alert("Field Name shouldn't be empty")
             return;
         }
-        const newMilestone: Milestone = {
-            id: new Date().getTime() + "FDS",
-            state: false,
-            name: nameRef.current.value,
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                milestone:{
+                    name: nameRef.current.value,
+                    state: false,
+                }
+            })
         }
 
-        const new_milestones = milestones.slice();
-        new_milestones.push(newMilestone);
-        setMilestones(new_milestones);
-        setModalShow(false);
-        props.editMilestoneList(new_milestones)
+        fetch('http://localhost:4001/add_milestone', requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                if (!nameRef || !nameRef.current) return;
+                let new_milestone: Milestone = {
+                    id: data.id,
+                    name: nameRef.current.value,
+                    state: false,
+                    goal_id: data.goal_id
+                }
+                const new_milestones = milestones.slice();
+                new_milestones.push(new_milestone);
+                setMilestones(new_milestones);
+                setModalShow(false);
+                props.editMilestoneList(new_milestones)
+            });
+
     }
 
 

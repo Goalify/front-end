@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { goal1 } from 'testcases/samples';
-import {Goals, Goal, Milestone} from '../../../tsInterfaces/interfaces'
+import {Goal, Milestone} from '../../../tsInterfaces/interfaces'
 
 function GoalStats(props: {goal: Goal}){
 
@@ -15,7 +14,7 @@ function GoalStats(props: {goal: Goal}){
     } 
 
     let completePercentageElement: JSX.Element = <div></div>;
-    if(props.goal.milestones.length != 0){
+    if(props.goal.milestones.length !== 0){
 
         let completePercentage: number = countCompletedMilstones(props.goal.milestones) / props.goal.milestones.length;   
 
@@ -25,9 +24,9 @@ function GoalStats(props: {goal: Goal}){
 
 
     let timeSpentElement: JSX.Element = <div></div>;
-    if(props.goal.milestones.every((milestone) => milestone.state == true)){
+    if(props.goal.milestones.every((milestone) => milestone.state === true)){
         let timeSpent: number = 0;
-        if(props.goal.dateFinished) 
+        if(props.goal.dateFinished && props.goal.dateFinished !== "") 
             timeSpent = new Date(props.goal.dateFinished).getTime() - new Date(props.goal.dateCreated).getTime();
         timeSpentElement = <div>
             Time spent: {msToTime(timeSpent)}
@@ -49,7 +48,7 @@ function GoalStats(props: {goal: Goal}){
     }
 
     let expectedTimeToFinishElement: JSX.Element = <div></div>;
-    if(props.goal.milestones.length != 0){
+    if(props.goal.milestones.length !== 0){
         let completedMilestones: number = countCompletedMilstones(props.goal.milestones);
         let allMilestones: number = props.goal.milestones.length;
         if(completedMilestones !== 0 && completedMilestones !== allMilestones){

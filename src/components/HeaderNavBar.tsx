@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { Dispatch } from "redux"
 import * as actions from "../redux/account_setup/actions";
 import { Navbar, Nav } from "react-bootstrap";
-import logo from 'Goalify-logos.jpeg';
 import 'components/HeaderNavBar.css';
 
 const HeaderNavBar = () => {

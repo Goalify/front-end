@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import {Goal, Milestone} from "../../tsInterfaces/interfaces";
 import "./Goal.css"
 import {MilestonesList} from "./MilestoneList"
-import { Card, Button, Collapse, Modal, Form } from 'react-bootstrap';
+import { Card, Collapse, Form } from 'react-bootstrap';
 
 export function DbClickField(props: {className?: string, text: string, setText: any}){
 
@@ -44,7 +44,7 @@ export function DbClickField(props: {className?: string, text: string, setText: 
                         type="text" 
                         placeholder="Please enter some text"
                         value={userText}
-                        onKeyDown={(event) => {if(event.key == "Enter") {handleBlur()}}}
+                        onKeyDown={(event) => {if(event.key === "Enter") {handleBlur()}}}
                         onBlur={() => handleBlur()}
                 />
                 </Form.Group>
@@ -82,19 +82,13 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
         new_goal.milestones = milestones;
         props.setGoal(new_goal);
     }
+    function edit_deadline(deadline: string){
+        let new_goal = JSON.parse(JSON.stringify(goal));
+        new_goal.deadline = deadline;
+        props.setGoal(new_goal);
+    }
 
     const [open, setOpen] = React.useState<boolean>(false);
-    const statusColors = {
-        Done: 'green',
-        ToDo: 'cornflower-blue',
-        InProgress: "#ad9c21",
-        Failed: 'Red'
-    }
-    const statusStyle = {
-        color: (statusColors as any)[goal.state],
-        padding: "0",
-        margin: "0",
-    }
 
     return <div>
         <Card className="text-center"  >
@@ -119,6 +113,8 @@ function GoalItem(props: {goal: Goal, setGoal: any, deleteGoal: any}) {
                         </div>
                         
                             <DbClickField text={goal.description} setText={edit_description}></DbClickField>
+                            <div>Deadline: <DbClickField text={goal.deadline} setText={edit_deadline}></DbClickField></div>
+
                         <MilestonesList milestonesList = {goal.milestones} editMilestoneList = {edit_milestones}></MilestonesList>
                     </div>
                 </Collapse>
